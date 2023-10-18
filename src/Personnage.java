@@ -4,6 +4,7 @@ public class Personnage {
     private int life;
     private int strength;
     private EquipementOffensif weapon;
+    private EquipementDefensif shield;
 
     public Personnage(String type, String name) {
         this.name = name;
@@ -24,9 +25,12 @@ public class Personnage {
             this.life = 10;
             this.strength = 10;
             this.weapon = new EquipementOffensif("arme");
+            this.shield = new EquipementDefensif("bouclier");
         } else if (this.type.equals("magicien")) {
             this.life = 6;
             this.strength = 15;
+            this.weapon = new EquipementOffensif("sort");
+            this.shield = new EquipementDefensif("philtre");
         }
     }
 
@@ -37,6 +41,8 @@ public class Personnage {
                 ", name='" + name + '\'' +
                 ", life=" + life +
                 ", strength=" + strength +
+                ", weapon=" + weapon +
+                ", shield=" + shield +
                 '}';
     }
 }

@@ -7,10 +7,10 @@ public class EquipementOffensif {
         this.weapon = type;
         if (this.weapon.equals("arme")) {
             this.weaponName = "Epée";
-            this.weaponAttack = 100;
+            this.weaponAttack = 3;
         } else if (this.weapon.equals("sort")) {
-            this.weaponName = "Flamme de l'enfer";
-            this.weaponAttack = 120;
+            this.weaponName = "Flamme des dieux";
+            this.weaponAttack = 5;
         }
     }
 
