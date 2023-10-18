@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Personnage {
     private String type;
     private String name;
@@ -33,7 +35,13 @@ public class Personnage {
             this.shield = new EquipementDefensif("philtre");
         }
     }
-
+    public void modifyPlayer() {
+        Scanner clavier = new Scanner(System.in);
+        System.out.print("Modify type : ");
+        this.type = clavier.nextLine();
+        System.out.print("Modify name : ");
+        this.name = clavier.nextLine();
+    }
     @Override
     public String toString() {
         return "Personnage{" +
