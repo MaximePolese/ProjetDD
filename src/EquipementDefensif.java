@@ -1,25 +1,38 @@
-public class EquipementDefensif {
-    private String shield;
+abstract class EquipementDefensif {
+    private String shieldType;
     private String shieldName;
     private int shieldResistance;
-
-    public EquipementDefensif(String type) {
-        this.shield = type;
-        if (this.shield.equals("bouclier")) {
-            this.shieldName = "Broquel";
-            this.shieldResistance = 3;
-        } else if (this.shield.equals("philtre")) {
-            this.shieldName = "Barrière d'Ether";
-            this.shieldResistance = 4;
-        }
-    }
 
     @Override
     public String toString() {
         return "EquipementDefensif{" +
-                "shield='" + shield + '\'' +
+                "shieldType='" + shieldType + '\'' +
                 ", shieldName='" + shieldName + '\'' +
                 ", shieldResistance=" + shieldResistance +
                 '}';
+    }
+
+    public String getShieldType() {
+        return shieldType;
+    }
+
+    public void setShieldType(String shieldType) {
+        this.shieldType = shieldType;
+    }
+
+    public String getShieldName() {
+        return shieldName;
+    }
+
+    public void setShieldName(String shieldName) {
+        this.shieldName = shieldName;
+    }
+
+    public int getShieldResistance() {
+        return shieldResistance;
+    }
+
+    public void setShieldResistance(int shieldResistance) {
+        this.shieldResistance = shieldResistance;
     }
 }

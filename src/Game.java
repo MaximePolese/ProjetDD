@@ -10,13 +10,6 @@ public class Game {
         this.playGame(player);
     }
 
-    public void playGame(Personnage player) {
-        while (player.getPlayerPos() < 64) {
-            this.lancerDe();
-            this.movePlayer(player);
-        }
-    }
-
     public void initBoard() {
         gameBoard = new int[64];
         for (int i = 0; i < gameBoard.length; i++) {
@@ -42,5 +35,12 @@ public class Game {
     public void movePlayer(Personnage player) {
         player.setPlayerPos(player.getPlayerPos() + dice);
         System.out.println("Player en position : " + player.getPlayerPos());
+    }
+
+    public void playGame(Personnage player) {
+        while (player.getPlayerPos() < 64) {
+            this.lancerDe();
+            this.movePlayer(player);
+        }
     }
 }

@@ -1,25 +1,38 @@
-public class EquipementOffensif {
-    private String weapon;
+abstract class EquipementOffensif {
+    private String weaponType;
     private String weaponName;
     private int weaponAttack;
-
-    public EquipementOffensif(String type) {
-        this.weapon = type;
-        if (this.weapon.equals("arme")) {
-            this.weaponName = "Epée";
-            this.weaponAttack = 3;
-        } else if (this.weapon.equals("sort")) {
-            this.weaponName = "Flamme des dieux";
-            this.weaponAttack = 5;
-        }
-    }
 
     @Override
     public String toString() {
         return "EquipementOffensif{" +
-                "weapon='" + weapon + '\'' +
+                "weapon='" + weaponType + '\'' +
                 ", weaponName='" + weaponName + '\'' +
                 ", weaponAttack=" + weaponAttack +
                 '}';
+    }
+
+    public String getWeaponType() {
+        return weaponType;
+    }
+
+    public void setWeaponType(String weaponType) {
+        this.weaponType = weaponType;
+    }
+
+    public String getWeaponName() {
+        return weaponName;
+    }
+
+    public void setWeaponName(String weaponName) {
+        this.weaponName = weaponName;
+    }
+
+    public int getWeaponAttack() {
+        return weaponAttack;
+    }
+
+    public void setWeaponAttack(int weaponAttack) {
+        this.weaponAttack = weaponAttack;
     }
 }

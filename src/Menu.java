@@ -16,12 +16,11 @@ public class Menu {
                 this.addNewPlayer();
             } else if (this.menuChoice == 2) {
                 if (this.p1 == null) {
-                    System.out.println("First, you have to create new player ! Go back to menu ......");
+                    System.out.println("First, you have to create new player ! back to menu ......");
                     this.mainMenu();
                 } else {
-                    p1.modifyPlayer();
-                    System.out.println(p1);
-                    System.out.println("Your player is modify ! Go back to menu ......");
+                    modifyPlayer();
+                    System.out.println("Your player is modify ! back to menu ......");
                     this.mainMenu();
                 }
             } else if (this.menuChoice == 3) {
@@ -50,10 +49,27 @@ public class Menu {
             String type = clavier.nextLine();
             System.out.print("Enter name : ");
             String name = clavier.nextLine();
-            p1 = new Personnage(type, name);
+            newPlayer(type, name);
             System.out.println(p1);
         } else if (this.newPlayer.equals("no")) {
             this.mainMenu();
+        }
+    }
+
+    public void modifyPlayer() {
+        System.out.print("Modify type : ");
+        String type = clavier.nextLine();
+        System.out.print("Modify name : ");
+        String name = clavier.nextLine();
+        newPlayer(type, name);
+        System.out.println(p1);
+    }
+
+    public void newPlayer(String type, String name) {
+        if (type.equals("guerrier")) {
+            p1 = new Warrior(type, name);
+        } else if (type.equals("magicien")) {
+            p1 = new Wizard(type, name);
         }
     }
 
@@ -62,7 +78,7 @@ public class Menu {
         startGame = clavier.nextLine();
         if (this.startGame.equals("yes")) {
             if (this.p1 == null) {
-                p1 = new Personnage("guerrier", "player 1");
+                p1 = new Warrior("guerrier", "player 1");
                 System.out.println(p1);
             }
             Game newGame = new Game(p1);

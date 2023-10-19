@@ -1,43 +1,11 @@
-import java.util.Scanner;
-
-public class Personnage {
+abstract class Personnage {
     private String type;
     private String name;
     private int life;
     private int strength;
-    private EquipementOffensif weapon;
-    private EquipementDefensif shield;
+    private EquipementOffensif offensiveItem;
+    private EquipementDefensif defensiveItem;
     private int playerPos;
-
-    public Personnage(String type, String name) {
-        this.name = name;
-        this.type = type;
-        this.playerPos = 1;
-        this.newPlayer();
-    }
-
-    public void newPlayer() {
-        if (this.type.equals("guerrier")) {
-            this.life = 10;
-            this.strength = 10;
-            this.weapon = new EquipementOffensif("arme");
-            this.shield = new EquipementDefensif("bouclier");
-        } else if (this.type.equals("magicien")) {
-            this.life = 6;
-            this.strength = 15;
-            this.weapon = new EquipementOffensif("sort");
-            this.shield = new EquipementDefensif("philtre");
-        }
-    }
-
-    public void modifyPlayer() {
-        Scanner clavier = new Scanner(System.in);
-        System.out.print("Modify type : ");
-        this.type = clavier.nextLine();
-        System.out.print("Modify name : ");
-        this.name = clavier.nextLine();
-        this.newPlayer();
-    }
 
     @Override
     public String toString() {
@@ -46,8 +14,8 @@ public class Personnage {
                 ", name='" + name + '\'' +
                 ", life=" + life +
                 ", strength=" + strength +
-                ", weapon=" + weapon +
-                ", shield=" + shield +
+                ", weapon=" + offensiveItem +
+                ", shield=" + defensiveItem +
                 ", playerPos=" + playerPos +
                 '}';
     }
@@ -58,6 +26,54 @@ public class Personnage {
 
     public void setPlayerPos(int playerPos) {
         this.playerPos = playerPos;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public EquipementOffensif getOffensiveItem() {
+        return offensiveItem;
+    }
+
+    public void setOffensiveItem(EquipementOffensif offensiveItem) {
+        this.offensiveItem = offensiveItem;
+    }
+
+    public EquipementDefensif getDefensiveItem() {
+        return defensiveItem;
+    }
+
+    public void setDefensiveItem(EquipementDefensif defensiveItem) {
+        this.defensiveItem = defensiveItem;
     }
 }
 
