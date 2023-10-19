@@ -7,22 +7,16 @@ public class Personnage {
     private int strength;
     private EquipementOffensif weapon;
     private EquipementDefensif shield;
+    private int playerPos;
 
     public Personnage(String type, String name) {
         this.name = name;
         this.type = type;
-        this.initPlayer();
+        this.playerPos = 1;
+        this.newPlayer();
     }
 
-    public Personnage(String name) {
-        this("guerrier", name);
-    }
-
-    public Personnage() {
-        this("guerrier", "player 1");
-    }
-
-    public void initPlayer() {
+    public void newPlayer() {
         if (this.type.equals("guerrier")) {
             this.life = 10;
             this.strength = 10;
@@ -35,13 +29,16 @@ public class Personnage {
             this.shield = new EquipementDefensif("philtre");
         }
     }
+
     public void modifyPlayer() {
         Scanner clavier = new Scanner(System.in);
         System.out.print("Modify type : ");
         this.type = clavier.nextLine();
         System.out.print("Modify name : ");
         this.name = clavier.nextLine();
+        this.newPlayer();
     }
+
     @Override
     public String toString() {
         return "Personnage{" +
@@ -51,7 +48,16 @@ public class Personnage {
                 ", strength=" + strength +
                 ", weapon=" + weapon +
                 ", shield=" + shield +
+                ", playerPos=" + playerPos +
                 '}';
+    }
+
+    public int getPlayerPos() {
+        return playerPos;
+    }
+
+    public void setPlayerPos(int playerPos) {
+        this.playerPos = playerPos;
     }
 }
 

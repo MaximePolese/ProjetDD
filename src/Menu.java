@@ -6,6 +6,7 @@ public class Menu {
     private String newPlayer;
     private String startGame;
     private String exitGame = "no";
+    private Personnage p1;
 
     public void launchMenu() {
         System.out.println("Donjons & Dragons");
@@ -14,7 +15,15 @@ public class Menu {
             if (this.menuChoice == 1) {
                 this.addNewPlayer();
             } else if (this.menuChoice == 2) {
-//                p1.modifyPlayer();
+                if (this.p1 == null) {
+                    System.out.println("First, you have to create new player ! Go back to menu ......");
+                    this.mainMenu();
+                } else {
+                    p1.modifyPlayer();
+                    System.out.println(p1);
+                    System.out.println("Your player is modify ! Go back to menu ......");
+                    this.mainMenu();
+                }
             } else if (this.menuChoice == 3) {
                 this.startNewGame();
             } else if (this.menuChoice == 4) {
@@ -28,8 +37,9 @@ public class Menu {
         System.out.println("2 - Modify player");
         System.out.println("3 - Start new game");
         System.out.println("4 - Exit game");
-        System.out.println("Enter your choice : ");
+        System.out.print("Enter your choice : ");
         menuChoice = clavier.nextInt();
+        clavier.nextLine();
     }
 
     public void addNewPlayer() {
@@ -40,7 +50,7 @@ public class Menu {
             String type = clavier.nextLine();
             System.out.print("Enter name : ");
             String name = clavier.nextLine();
-            Personnage p1 = new Personnage(type, name);
+            p1 = new Personnage(type, name);
             System.out.println(p1);
         } else if (this.newPlayer.equals("no")) {
             this.mainMenu();
@@ -51,7 +61,11 @@ public class Menu {
         System.out.print("Start new game ? yes/no ");
         startGame = clavier.nextLine();
         if (this.startGame.equals("yes")) {
-            Game newGame = new Game();
+            if (this.p1 == null) {
+                p1 = new Personnage("guerrier", "player 1");
+                System.out.println(p1);
+            }
+            Game newGame = new Game(p1);
         } else if (this.startGame.equals("no")) {
             this.mainMenu();
         }
@@ -60,6 +74,9 @@ public class Menu {
     public void exitGame() {
         System.out.print("Exit game ? yes/no ");
         exitGame = clavier.nextLine();
+        if (this.exitGame.equals("no")) {
+            this.mainMenu();
+        }
     }
 }
 
