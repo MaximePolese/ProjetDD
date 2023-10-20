@@ -54,7 +54,7 @@ public class Game {
     }
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
-        while (player.getPlayerPos() < 64) {
+        while (playerPos < 64) {
             this.lancerDe();
             this.movePlayer();
             if (playerPos >= 64) {
