@@ -11,7 +11,11 @@ public class Game {
     public Game(Personnage player) {
         this.initBoard();
         this.initPlayer(player);
-        this.playGame(player);
+        try {
+            this.playGame(player);
+        } catch (PersonnageHorsPlateauException e) {
+            System.out.println("Partie terminée !");
+        }
     }
 
     public void initBoard() {
@@ -41,10 +45,13 @@ public class Game {
         System.out.println("Player en position : " + player.getPlayerPos());
     }
 
-    public void playGame(Personnage player) {
+    public void playGame(Personnage player) throws PersonnageHorsPlateauException {
         while (player.getPlayerPos() < 64) {
             this.lancerDe();
             this.movePlayer(player);
+            if (player.getPlayerPos() >= 64) {
+                throw new PersonnageHorsPlateauException();
+            }
         }
     }
 }
