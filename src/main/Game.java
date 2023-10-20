@@ -14,7 +14,7 @@ public class Game {
         try {
             this.playGame(player);
         } catch (PersonnageHorsPlateauException e) {
-            System.out.println("Partie terminée !");
+            System.out.println(player.getName() + " Win !!!");
         }
     }
 
