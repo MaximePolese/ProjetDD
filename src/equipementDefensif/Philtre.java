@@ -1,7 +1,7 @@
 package equipementDefensif;
 
-public class Potion extends EquipementDefensif {
-    public Potion(String name) {
+public class Philtre extends EquipementDefensif {
+    public Philtre(String name) {
         super(name);
         this.setShieldResistance(4);
     }

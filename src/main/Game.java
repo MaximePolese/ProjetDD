@@ -3,6 +3,7 @@ package main;
 import personnage.Personnage;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Game {
     private int[] gameBoard;
@@ -19,6 +20,11 @@ public class Game {
     }
 
     public void initBoard() {
+        ArrayList<Case> board = new ArrayList<Case>();
+        board.add();
+        board.add();
+        board.add();
+        board.add();
         gameBoard = new int[64];
         for (int i = 0; i < gameBoard.length; i++) {
             gameBoard[i] = i + 1;

@@ -9,8 +9,8 @@ public class Warrior extends Personnage {
         this.setPlayerPos(1);
         this.setLife(10);
         this.setStrength(10);
-        this.setOffensiveItem(new Weapon("Epée"));
-        this.setDefensiveItem(new Shield("Broquel"));
+//        this.setOffensiveItem(new Weapon("Epée"));
+//        this.setDefensiveItem(new Shield("Bouclier d'acier"));
     }
 }
 
