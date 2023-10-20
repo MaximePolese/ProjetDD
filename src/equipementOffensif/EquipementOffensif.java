@@ -4,7 +4,7 @@ public abstract class EquipementOffensif {
     private String weaponName;
     private int weaponAttack;
 
-    public EquipementOffensif(String name) {
+    protected EquipementOffensif(String name) {
         this.weaponName = name;
     }
 

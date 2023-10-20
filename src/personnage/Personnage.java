@@ -12,6 +12,11 @@ public abstract class Personnage {
     private EquipementDefensif defensiveItem;
     private int playerPos;
 
+    protected Personnage(String type, String name) {
+        this.name = name;
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Personnage{" +
@@ -23,14 +28,6 @@ public abstract class Personnage {
                 ", defensiveItem=" + defensiveItem +
                 ", playerPos=" + playerPos +
                 '}';
-    }
-
-    public int getPlayerPos() {
-        return playerPos;
-    }
-
-    public void setPlayerPos(int playerPos) {
-        this.playerPos = playerPos;
     }
 
     public String getType() {
@@ -79,6 +76,14 @@ public abstract class Personnage {
 
     public void setDefensiveItem(EquipementDefensif defensiveItem) {
         this.defensiveItem = defensiveItem;
+    }
+
+    public int getPlayerPos() {
+        return playerPos;
+    }
+
+    public void setPlayerPos(int playerPos) {
+        this.playerPos = playerPos;
     }
 }
 

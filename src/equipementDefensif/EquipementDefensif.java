@@ -4,7 +4,7 @@ public abstract class EquipementDefensif {
     private String shieldName;
     private int shieldResistance;
 
-    public EquipementDefensif(String name) {
+    protected EquipementDefensif(String name) {
         this.shieldName = name;
     }
 
