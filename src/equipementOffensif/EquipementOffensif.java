@@ -1,4 +1,6 @@
-abstract class EquipementOffensif {
+package equipementOffensif;
+
+public abstract class EquipementOffensif {
     private String weaponType;
     private String weaponName;
     private int weaponAttack;
@@ -6,7 +8,7 @@ abstract class EquipementOffensif {
     @Override
     public String toString() {
         return "EquipementOffensif{" +
-                "weapon='" + weaponType + '\'' +
+                "weaponType='" + weaponType + '\'' +
                 ", weaponName='" + weaponName + '\'' +
                 ", weaponAttack=" + weaponAttack +
                 '}';

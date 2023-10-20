@@ -1,3 +1,8 @@
+package personnage;
+
+import equipementDefensif.Shield;
+import equipementOffensif.Weapon;
+
 public class Warrior extends Personnage {
     public Warrior(String type,String name) {
         this.setName(name);

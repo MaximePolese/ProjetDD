@@ -1,4 +1,9 @@
-abstract class Personnage {
+package personnage;
+
+import equipementDefensif.EquipementDefensif;
+import equipementOffensif.EquipementOffensif;
+
+public abstract class Personnage {
     private String type;
     private String name;
     private int life;
@@ -14,8 +19,8 @@ abstract class Personnage {
                 ", name='" + name + '\'' +
                 ", life=" + life +
                 ", strength=" + strength +
-                ", weapon=" + offensiveItem +
-                ", shield=" + defensiveItem +
+                ", offensiveItem=" + offensiveItem +
+                ", defensiveItem=" + defensiveItem +
                 ", playerPos=" + playerPos +
                 '}';
     }

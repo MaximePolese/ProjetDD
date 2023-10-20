@@ -1,3 +1,7 @@
+package main;
+
+import personnage.Personnage;
+
 import java.util.Scanner;
 
 public class Game {

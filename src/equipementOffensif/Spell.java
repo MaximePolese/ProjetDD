@@ -1,3 +1,5 @@
+package equipementOffensif;
+
 public class Spell extends EquipementOffensif {
 
     public Spell(String type) {

@@ -1,3 +1,5 @@
+package equipementOffensif;
+
 public class Weapon extends EquipementOffensif {
 
     public Weapon(String type){

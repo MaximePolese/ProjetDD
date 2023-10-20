@@ -1,3 +1,9 @@
+package main;
+
+import personnage.Personnage;
+import personnage.Warrior;
+import personnage.Wizard;
+
 import java.util.Scanner;
 
 public class Menu {

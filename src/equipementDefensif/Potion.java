@@ -1,3 +1,5 @@
+package equipementDefensif;
+
 public class Potion extends EquipementDefensif {
     public Potion(String type) {
         this.setShieldType(type);

@@ -1,3 +1,8 @@
+package personnage;
+
+import equipementDefensif.Potion;
+import equipementOffensif.Spell;
+
 public class Wizard extends Personnage {
     public Wizard(String type,String name) {
         this.setName(name);

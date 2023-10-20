@@ -1,4 +1,6 @@
-abstract class EquipementDefensif {
+package equipementDefensif;
+
+public abstract class EquipementDefensif {
     private String shieldType;
     private String shieldName;
     private int shieldResistance;
