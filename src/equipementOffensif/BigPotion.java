@@ -4,6 +4,6 @@ public class BigPotion extends Potion {
 
     public BigPotion(String name) {
         super(name);
-        this.setWeaponAttack(2);
+        this.setHealth(5);
     }
 }
