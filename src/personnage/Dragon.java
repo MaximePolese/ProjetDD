@@ -1,9 +1,8 @@
 package personnage;
-
-public class Dragon extends Personnage {
+import main.Case;
+public class Dragon extends Personnage implements Case {
     public Dragon(String type, String name) {
         super(type, name);
-        this.setPlayerPos(1);
         this.setLife(15);
         this.setStrength(4);
     }

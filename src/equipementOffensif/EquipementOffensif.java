@@ -1,6 +1,6 @@
 package equipementOffensif;
-
-public abstract class EquipementOffensif {
+import main.Case;
+public abstract class EquipementOffensif implements Case {
     private String weaponName;
     private int weaponAttack;
 

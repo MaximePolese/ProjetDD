@@ -10,7 +10,7 @@ public abstract class Personnage {
     private int strength;
     private EquipementOffensif offensiveItem;
     private EquipementDefensif defensiveItem;
-    private int playerPos;
+//    private int playerPos;
 
     protected Personnage(String type, String name) {
         this.name = name;
@@ -26,7 +26,7 @@ public abstract class Personnage {
                 ", strength=" + strength +
                 ", offensiveItem=" + offensiveItem +
                 ", defensiveItem=" + defensiveItem +
-                ", playerPos=" + playerPos +
+//                ", playerPos=" + playerPos +
                 '}';
     }
 
@@ -78,12 +78,12 @@ public abstract class Personnage {
         this.defensiveItem = defensiveItem;
     }
 
-    public int getPlayerPos() {
-        return playerPos;
-    }
-
-    public void setPlayerPos(int playerPos) {
-        this.playerPos = playerPos;
-    }
+//    public int getPlayerPos() {
+//        return playerPos;
+//    }
+//
+//    public void setPlayerPos(int playerPos) {
+//        this.playerPos = playerPos;
+//    }
 }
 

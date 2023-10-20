@@ -8,10 +8,11 @@ import java.util.ArrayList;
 public class Game {
     private int[] gameBoard;
     private int dice;
+    private int playerPos;
 
     public Game(Personnage player) {
         this.initBoard();
-        this.initPlayer(player);
+        this.initPlayer();
         try {
             this.playGame(player);
         } catch (PersonnageHorsPlateauException e) {
@@ -20,11 +21,11 @@ public class Game {
     }
 
     public void initBoard() {
-        ArrayList<Case> board = new ArrayList<Case>();
-        board.add();
-        board.add();
-        board.add();
-        board.add();
+//        ArrayList<Case> board = new ArrayList<Case>();
+//        board.add();
+//        board.add();
+//        board.add();
+//        board.add();
         gameBoard = new int[64];
         for (int i = 0; i < gameBoard.length; i++) {
             gameBoard[i] = i + 1;
@@ -33,8 +34,9 @@ public class Game {
         System.out.println(" ");
     }
 
-    public void initPlayer(Personnage player) {
-        System.out.println("Player en position : " + player.getPlayerPos());
+    public void initPlayer() {
+        playerPos = 1;
+        System.out.println("Player en position : " + playerPos);
     }
 
     public void lancerDe() {
@@ -46,16 +48,16 @@ public class Game {
         }
     }
 
-    public void movePlayer(Personnage player) {
-        player.setPlayerPos(player.getPlayerPos() + dice);
-        System.out.println("Player en position : " + player.getPlayerPos());
+    public void movePlayer() {
+        playerPos = playerPos + dice;
+        System.out.println("Player en position : " + playerPos);
     }
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
         while (player.getPlayerPos() < 64) {
             this.lancerDe();
-            this.movePlayer(player);
-            if (player.getPlayerPos() >= 64) {
+            this.movePlayer();
+            if (playerPos >= 64) {
                 throw new PersonnageHorsPlateauException();
             }
         }
