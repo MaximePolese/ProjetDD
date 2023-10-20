@@ -1,25 +1,22 @@
 package equipementOffensif;
 
 public abstract class EquipementOffensif {
-    private String weaponType;
     private String weaponName;
     private int weaponAttack;
+
+    public EquipementOffensif(String name) {
+        this.weaponName = name;
+    }
+
+    public abstract String getWeaponType();
 
     @Override
     public String toString() {
         return "EquipementOffensif{" +
-                "weaponType='" + weaponType + '\'' +
+                "weaponType='" + getWeaponType() + '\'' +
                 ", weaponName='" + weaponName + '\'' +
                 ", weaponAttack=" + weaponAttack +
                 '}';
-    }
-
-    public String getWeaponType() {
-        return weaponType;
-    }
-
-    public void setWeaponType(String weaponType) {
-        this.weaponType = weaponType;
     }
 
     public String getWeaponName() {

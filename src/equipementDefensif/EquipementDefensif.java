@@ -1,25 +1,22 @@
 package equipementDefensif;
 
 public abstract class EquipementDefensif {
-    private String shieldType;
     private String shieldName;
     private int shieldResistance;
+
+    public EquipementDefensif(String name) {
+        this.shieldName = name;
+    }
+
+    public abstract String getShieldType();
 
     @Override
     public String toString() {
         return "EquipementDefensif{" +
-                "shieldType='" + shieldType + '\'' +
+                "shieldType='" + getShieldType() + '\'' +
                 ", shieldName='" + shieldName + '\'' +
                 ", shieldResistance=" + shieldResistance +
                 '}';
-    }
-
-    public String getShieldType() {
-        return shieldType;
-    }
-
-    public void setShieldType(String shieldType) {
-        this.shieldType = shieldType;
     }
 
     public String getShieldName() {

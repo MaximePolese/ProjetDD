@@ -2,9 +2,13 @@ package equipementOffensif;
 
 public class Spell extends EquipementOffensif {
 
-    public Spell(String type) {
-        this.setWeaponType(type);
-        this.setWeaponName("Flamme");
+    public Spell(String name) {
+        super(name);
         this.setWeaponAttack(5);
+    }
+
+    @Override
+    public String getWeaponType() {
+        return "sort";
     }
 }
