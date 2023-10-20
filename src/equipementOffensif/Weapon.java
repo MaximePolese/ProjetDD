@@ -1,10 +1,9 @@
 package equipementOffensif;
 
-public class Weapon extends EquipementOffensif {
+public abstract class Weapon extends EquipementOffensif {
 
-    public Weapon(String name) {
+    protected Weapon(String name) {
         super(name);
-        this.setWeaponAttack(3);
     }
 
     @Override

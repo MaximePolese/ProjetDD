@@ -1,10 +1,9 @@
 package equipementOffensif;
 
-public class Spell extends EquipementOffensif {
+public abstract class Spell extends EquipementOffensif {
 
-    public Spell(String name) {
+    protected Spell(String name) {
         super(name);
-        this.setWeaponAttack(5);
     }
 
     @Override
