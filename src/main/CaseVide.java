@@ -5,6 +5,6 @@ public class CaseVide implements Case{
 
     @Override
     public void interaction() {
-        System.out.println("départ");
+        System.out.println("case vide");
     }
 }
