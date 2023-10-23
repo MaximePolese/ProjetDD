@@ -6,4 +6,8 @@ public class Sorcier extends Ennemi {
         this.setLife(9);
         this.setStrength(2);
     }
+    @Override
+    public void interaction(Personnage player) {
+        System.out.println("Sorcier attacks");
+    }
 }

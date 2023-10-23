@@ -6,4 +6,8 @@ public class Gobelin extends Ennemi {
         this.setLife(6);
         this.setStrength(1);
     }
+    @Override
+    public void interaction(Personnage player) {
+        System.out.println("Gobelin attacks");
+    }
 }

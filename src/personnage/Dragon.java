@@ -6,4 +6,8 @@ public class Dragon extends Ennemi {
         this.setLife(15);
         this.setStrength(4);
     }
+    @Override
+    public void interaction(Personnage player) {
+        System.out.println("Dragon attacks");
+    }
 }

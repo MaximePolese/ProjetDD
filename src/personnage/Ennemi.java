@@ -8,7 +8,7 @@ public class Ennemi extends Personnage implements Case {
     }
 
     @Override
-    public void interaction() {
+    public void interaction(Personnage player) {
         System.out.println("enemies attack");
     }
 }

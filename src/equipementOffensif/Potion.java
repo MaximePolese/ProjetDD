@@ -1,5 +1,7 @@
 package equipementOffensif;
 
+import personnage.Personnage;
+
 public abstract class Potion extends EquipementOffensif {
     private int health;
 
@@ -19,7 +21,7 @@ public abstract class Potion extends EquipementOffensif {
                 '}';
     }
     @Override
-    public void interaction() {
+    public void interaction(Personnage player) {
         System.out.println("Potion found");
     }
     public void setHealth(int health) {

@@ -1,5 +1,7 @@
 package equipementOffensif;
 import main.Case;
+import personnage.Personnage;
+
 public abstract class EquipementOffensif implements Case {
     private String weaponName;
     private int weaponAttack;
@@ -19,7 +21,7 @@ public abstract class EquipementOffensif implements Case {
                 '}';
     }
     @Override
-    public void interaction() {
+    public void interaction(Personnage player) {
         System.out.println("weapon found");
     }
     public String getWeaponName() {
