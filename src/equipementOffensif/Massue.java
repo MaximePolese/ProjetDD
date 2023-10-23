@@ -7,8 +7,4 @@ public class Massue extends Weapon {
         super("Massue");
         this.setWeaponAttack(3);
     }
-    @Override
-    public void interaction(Personnage player) {
-        System.out.println("Massue found");
-    }
 }

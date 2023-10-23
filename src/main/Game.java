@@ -14,7 +14,7 @@ public class Game {
     private int playerPos;
 
     public Game(Personnage player) {
-        this.initBoard();
+        this.manualInitBoard();
         this.initPlayer();
         try {
             this.playGame(player);
@@ -22,47 +22,57 @@ public class Game {
             System.out.println(player.getName() + " Win !!!");
         }
     }
-
-    public void initBoard() {
+    public void randomInitBoard() {
         board = new ArrayList<Case>();
         for (int i = 0; i < 64; i++) {
-            if (i == 45 || i == 52 || i == 56 || i == 62) {
-                board.add(new Dragon());
-            }
-            if (i == 10 || i == 20 || i == 25 || i == 32 || i == 35 || i == 36 || i == 37 || i == 40 || i == 44 || i == 47) {
-                board.add(new Sorcier());
-            }
-            if (i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21 || i == 24 || i == 27 || i == 30) {
-                board.add(new Gobelin());
-            }
-            if (i == 2 || i == 11 || i == 5 || i == 22 || i == 38) {
-                board.add(new Massue());
-            }
-            if (i == 19 || i == 26 || i == 42 || i == 53) {
-                board.add(new Epee());
-            }
-            if (i == 1 || i == 4 || i == 8 || i == 17 || i == 23) {
-                board.add(new Eclair());
-            }
-            if (i == 48 || i == 49) {
-                board.add(new BouleDeFeu());
-            }
-            if (i == 7 || i == 13 || i == 31 || i == 33 || i == 39 || i == 43) {
-                board.add(new SmallPotion());
-            }
-            if (i == 28 || i == 41) {
-                board.add(new BigPotion());
-            } else {
-                board.add(new CaseVide());
-            }
+
+            System.out.println(i + " " + board.get(i));
         }
-        System.out.print(board);
+        System.out.println(" ");
+    }
+    public void manualInitBoard() {
+        board = new ArrayList<Case>();
+        for (int i = 0; i < 64; i++) {
+            switch (i) {
+                case 45, 52, 56, 62:
+                    board.add(new Dragon());
+                    break;
+                case 10, 20, 25, 32, 36, 37, 40, 44, 47:
+                    board.add(new Sorcier());
+                    break;
+                case 3, 6, 9, 12, 15, 18, 21, 24, 27, 30:
+                    board.add(new Gobelin());
+                    break;
+                case 2, 5, 11, 22, 38:
+                    board.add(new Massue());
+                    break;
+                case 19, 26, 42, 53:
+                    board.add(new Epee());
+                    break;
+                case 1, 4, 8, 17, 23:
+                    board.add(new Eclair());
+                    break;
+                case 48, 49:
+                    board.add(new BouleDeFeu());
+                    break;
+                case 7, 13, 31, 33, 39, 43:
+                    board.add(new SmallPotion());
+                    break;
+                case 28, 41:
+                    board.add(new BigPotion());
+                    break;
+                default:
+                    board.add(new CaseVide());
+                    break;
+            }
+            System.out.println(i + " " + board.get(i));
+        }
         System.out.println(" ");
     }
 
     public void initPlayer() {
-        playerPos = 1;
-        System.out.println("Player en position : " + playerPos);
+        playerPos = 0;
+        System.out.println("Player en position : " + (playerPos + 1));
     }
 
     public void lancerDe() {
@@ -77,21 +87,21 @@ public class Game {
 
     public void movePlayer() throws PersonnageHorsPlateauException {
         playerPos = playerPos + dice;
-        if (playerPos > 64) {
+        if (playerPos > 63) {
             throw new PersonnageHorsPlateauException();
         }
-        System.out.println("Player en position : " + playerPos);
+        System.out.println("Player en position : " + (playerPos + 1));
     }
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
-        while (playerPos <= 64) {
+        while (playerPos <= 63) {
             this.lancerDe();
             try {
                 this.movePlayer();
             } catch (PersonnageHorsPlateauException e) {
                 throw e;
             }
-            board.get(playerPos - 1).interaction(player);
+            board.get(playerPos).interaction(player);
         }
     }
 }

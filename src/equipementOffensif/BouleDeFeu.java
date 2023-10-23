@@ -8,8 +8,4 @@ public class BouleDeFeu extends Spell {
         super("Boule de feu");
         this.setWeaponAttack(7);
     }
-    @Override
-    public void interaction(Personnage player) {
-        System.out.println("Boule de feu found");
-    }
 }

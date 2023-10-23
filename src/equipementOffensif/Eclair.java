@@ -8,8 +8,4 @@ public class Eclair extends Spell {
         super("Eclair");
         this.setWeaponAttack(2);
     }
-    @Override
-    public void interaction(Personnage player) {
-        System.out.println("Eclair found");
-    }
 }

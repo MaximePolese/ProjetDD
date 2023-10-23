@@ -2,6 +2,7 @@ package personnage;
 
 import equipementDefensif.EquipementDefensif;
 import equipementOffensif.EquipementOffensif;
+import equipementOffensif.Potion;
 
 public abstract class Personnage {
     private String type;
@@ -10,6 +11,7 @@ public abstract class Personnage {
     private int strength;
     private EquipementOffensif offensiveItem;
     private EquipementDefensif defensiveItem;
+    private int maxLife;
 //    private int playerPos;
 
     protected Personnage(String type, String name) {
@@ -17,6 +19,20 @@ public abstract class Personnage {
         this.type = type;
     }
 
+    public void heals(Potion sousoupe){
+        this.life += sousoupe.getHealth();
+        if (this.life > this.maxLife){
+            this.life = this.maxLife;
+        }
+    }
+    public void newItem(EquipementOffensif item){
+        if (item.getWeaponAttack() > this.getOffensiveItem().getWeaponAttack() && item.getWeaponType().equals(this.getOffensiveItem().getWeaponType())) {
+            this.offensiveItem = item;
+            System.out.println("new weapon : " + item.getWeaponName());
+        } else {
+            System.out.println("non-equiped weapon : " + item.getWeaponName());
+        }
+    }
     @Override
     public String toString() {
         return "Personnage{" +
@@ -26,7 +42,6 @@ public abstract class Personnage {
                 ", strength=" + strength +
                 ", offensiveItem=" + offensiveItem +
                 ", defensiveItem=" + defensiveItem +
-//                ", playerPos=" + playerPos +
                 '}';
     }
 
@@ -78,6 +93,13 @@ public abstract class Personnage {
         this.defensiveItem = defensiveItem;
     }
 
+    public int getMaxLife() {
+        return maxLife;
+    }
+
+    public void setMaxLife(int maxLife) {
+        this.maxLife = maxLife;
+    }
 //    public int getPlayerPos() {
 //        return playerPos;
 //    }

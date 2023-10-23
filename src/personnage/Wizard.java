@@ -1,10 +1,14 @@
 package personnage;
 
+import equipementOffensif.MainsNues;
+
 public class Wizard extends Personnage {
     public Wizard(String type, String name) {
         super(type, name);
         this.setLife(3);
         this.setStrength(8);
-        //        this.setPlayerPos(1);
+        this.setMaxLife(6);
+        this.setOffensiveItem(new MainsNues());
+        this.getOffensiveItem().setWeaponType("sort");
     }
 }

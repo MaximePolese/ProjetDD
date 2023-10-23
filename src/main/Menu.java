@@ -11,6 +11,7 @@ public class Menu {
     private String startGame;
     private String exitGame = "no";
     private Personnage p1;
+    private Personnage savePlayer;
 
     public void launchMenu() {
         System.out.println("Donjons & Dragons");
@@ -77,15 +78,24 @@ public class Menu {
         }
     }
 
+    public void resetPlayer(Personnage player) {
+        if (player instanceof Warrior guerrier) {
+            savePlayer = new Warrior(guerrier.getType(), guerrier.getName());
+        } else if (player instanceof Wizard magicien) {
+            savePlayer = new Wizard(magicien.getType(), magicien.getName());
+        }
+    }
+
     public void startNewGame() {
         System.out.print("Start new game ? yes/no ");
         startGame = clavier.nextLine();
         if (this.startGame.equals("yes")) {
             if (this.p1 == null) {
                 p1 = new Warrior("guerrier", "player 1");
-                System.out.println(p1);
             }
-            Game newGame = new Game(p1);
+            resetPlayer(p1);
+            System.out.println(savePlayer);
+            Game newGame = new Game(savePlayer);
         } else if (this.startGame.equals("no")) {
             this.mainMenu();
         }
