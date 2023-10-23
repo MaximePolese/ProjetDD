@@ -1,8 +1,8 @@
 package equipementOffensif;
 
 public class Massue extends Weapon {
-    public Massue(String name) {
-        super(name);
+    public Massue() {
+        super("Massue");
         this.setWeaponAttack(3);
     }
 }

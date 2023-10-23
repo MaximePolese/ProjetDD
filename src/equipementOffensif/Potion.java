@@ -18,7 +18,10 @@ public abstract class Potion extends EquipementOffensif {
                 "health=" + health +
                 '}';
     }
-
+    @Override
+    public void interaction() {
+        System.out.println("Potion found");
+    }
     public void setHealth(int health) {
         this.health = health;
     }

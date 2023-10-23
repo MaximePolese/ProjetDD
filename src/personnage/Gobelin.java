@@ -1,10 +1,8 @@
 package personnage;
 
-import main.Case;
-
-public class Gobelin extends Personnage implements Case {
-    public Gobelin(String type, String name) {
-        super(type, name);
+public class Gobelin extends Ennemi {
+    public Gobelin() {
+        super("Gobelin");
         this.setLife(6);
         this.setStrength(1);
     }

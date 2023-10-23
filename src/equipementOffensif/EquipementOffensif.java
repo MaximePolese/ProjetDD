@@ -18,7 +18,10 @@ public abstract class EquipementOffensif implements Case {
                 ", weaponAttack=" + weaponAttack +
                 '}';
     }
-
+    @Override
+    public void interaction() {
+        System.out.println("weapon found");
+    }
     public String getWeaponName() {
         return weaponName;
     }

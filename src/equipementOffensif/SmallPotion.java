@@ -2,8 +2,8 @@ package equipementOffensif;
 
 public class SmallPotion extends Potion {
 
-    public SmallPotion(String name) {
-        super(name);
+    public SmallPotion() {
+        super("Small potion");
         this.setHealth(2);
     }
 }

@@ -1,8 +1,8 @@
 package equipementOffensif;
 
 public class Epee extends Weapon {
-    public Epee(String name) {
-        super(name);
+    public Epee() {
+        super("Epee");
         this.setWeaponAttack(5);
     }
 }

@@ -1,12 +1,15 @@
 package main;
 
-import personnage.Personnage;
+import personnage.*;
+import equipementOffensif.*;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Game {
-    private int[] gameBoard;
+//    private int[] gameBoard;
+
+    private ArrayList<Case> board;
     private int dice;
     private int playerPos;
 
@@ -21,16 +24,17 @@ public class Game {
     }
 
     public void initBoard() {
-//        ArrayList<Case> board = new ArrayList<Case>();
-//        board.add();
-//        board.add();
-//        board.add();
-//        board.add();
-        gameBoard = new int[64];
-        for (int i = 0; i < gameBoard.length; i++) {
-            gameBoard[i] = i + 1;
-            System.out.print(gameBoard[i] + " ");
-        }
+        board = new ArrayList<Case>();
+        board.add(new CaseVide());
+        board.add(new Gobelin());
+        board.add(new Epee());
+        board.add(new SmallPotion());
+        System.out.print(board);
+//        gameBoard = new int[64];
+//        for (int i = 0; i < gameBoard.length; i++) {
+//            gameBoard[i] = i + 1;
+//            System.out.print(gameBoard[i] + " ");
+//        }
         System.out.println(" ");
     }
 
@@ -43,23 +47,30 @@ public class Game {
         Scanner enter = new Scanner(System.in);
         System.out.print("Press enter to play : ");
         if (enter.hasNextLine()) {
-            dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
+//            dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
+            dice = 1;
             System.out.println("Dice result : " + dice);
         }
     }
 
-    public void movePlayer() {
+    public void movePlayer() throws PersonnageHorsPlateauException{
         playerPos = playerPos + dice;
+        if (playerPos > 4) {
+            throw new PersonnageHorsPlateauException();
+        }
         System.out.println("Player en position : " + playerPos);
     }
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
-        while (playerPos < 64) {
+        while (playerPos <= 4) {
             this.lancerDe();
-            this.movePlayer();
-            if (playerPos >= 64) {
-                throw new PersonnageHorsPlateauException();
+            try {
+                this.movePlayer();
             }
+            catch (PersonnageHorsPlateauException e){
+                throw e;
+            }
+            board.get(playerPos-1).interaction();
         }
     }
 }

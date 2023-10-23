@@ -2,8 +2,8 @@ package equipementOffensif;
 
 public class Eclair extends Spell {
 
-    public Eclair(String name) {
-        super(name);
+    public Eclair() {
+        super("Eclair");
         this.setWeaponAttack(2);
     }
 }
