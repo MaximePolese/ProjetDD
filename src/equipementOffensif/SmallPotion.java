@@ -1,6 +1,7 @@
 package equipementOffensif;
 
 import personnage.Personnage;
+import personnage.Warrior;
 
 public class SmallPotion extends Potion {
 
@@ -8,8 +9,10 @@ public class SmallPotion extends Potion {
         super("Small potion");
         this.setHealth(2);
     }
+
     @Override
     public void interaction(Personnage player) {
-        System.out.println("Small potion found");
+        System.out.print("Small");
+        super.interaction(player);
     }
 }

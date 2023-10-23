@@ -10,6 +10,7 @@ public class BigPotion extends Potion {
     }
     @Override
     public void interaction(Personnage player) {
-        System.out.println("Big potion found");
+        System.out.print("Big");
+        super.interaction(player);
     }
 }
