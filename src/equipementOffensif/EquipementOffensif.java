@@ -13,10 +13,10 @@ public abstract class EquipementOffensif implements Case {
 
     @Override
     public String toString() {
-        return "EquipementOffensif{" +
-                "weaponType='" + getWeaponType() + '\'' +
-                ", weaponName='" + weaponName + '\'' +
-                ", weaponAttack=" + weaponAttack +
+        return "EquipementOffensif {" +
+                "weaponType = " + weaponType +
+                ", weaponName = " + weaponName +
+                ", weaponAttack = " + weaponAttack +
                 '}';
     }
     @Override

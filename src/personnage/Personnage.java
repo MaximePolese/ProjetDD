@@ -12,7 +12,6 @@ public abstract class Personnage {
     private EquipementOffensif offensiveItem;
     private EquipementDefensif defensiveItem;
     private int maxLife;
-//    private int playerPos;
 
     protected Personnage(String type, String name) {
         this.name = name;
@@ -31,19 +30,19 @@ public abstract class Personnage {
             this.offensiveItem = item;
             System.out.println("new weapon : " + item.getWeaponName());
         } else {
-            System.out.println("non-equiped weapon : " + item.getWeaponName());
+            System.out.println("non-equipped weapon : " + item.getWeaponName());
         }
     }
 
     @Override
     public String toString() {
-        return "Personnage{" +
-                "type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", life=" + life +
-                ", strength=" + strength +
-                ", offensiveItem=" + offensiveItem +
-                ", defensiveItem=" + defensiveItem +
+        return "Personnage {" +
+                "type = " + type +
+                ", name = " + name +
+                ", life = " + life +
+                ", strength = " + strength +
+                ", " + offensiveItem +
+                ", " + defensiveItem +
                 '}';
     }
 

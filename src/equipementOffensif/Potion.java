@@ -16,8 +16,8 @@ public abstract class Potion extends EquipementOffensif {
 
     @Override
     public String toString() {
-        return "Potion{" +
-                "health=" + health +
+        return "Potion {" +
+                "health = " + health +
                 '}';
     }
 

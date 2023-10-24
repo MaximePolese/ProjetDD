@@ -12,9 +12,9 @@ public abstract class EquipementDefensif {
 
     @Override
     public String toString() {
-        return "EquipementDefensif{" +
-                "shieldType='" + getShieldType() + '\'' +
-                ", shieldName='" + shieldName + '\'' +
+        return "EquipementDefensif {" +
+                "shieldType = " + getShieldType() +
+                ", shieldName = " + shieldName +
                 ", shieldResistance=" + shieldResistance +
                 '}';
     }
