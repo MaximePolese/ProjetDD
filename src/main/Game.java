@@ -89,6 +89,7 @@ public class Game {
         }
         System.out.println(" ");
     }
+
 //    public void manualInitBoard() {
 //        board = new ArrayList<Case>();
 //        for (int i = 0; i < 64; i++) {
