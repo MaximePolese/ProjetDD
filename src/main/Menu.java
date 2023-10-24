@@ -1,6 +1,7 @@
 package main;
 
 import personnage.*;
+import main.Game;
 
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Menu {
     private Personnage savePlayer;
 
     public void launchMenu() {
-        System.out.println("Donjons & Dragons");
+        System.out.println(Game.ANSI_RED + "Donjons & Dragons" + Game.ANSI_RESET);
         this.mainMenu();
         while (!this.exitGame.equals("yes")) {
             if (this.menuChoice == 1) {
@@ -55,7 +56,7 @@ public class Menu {
             System.out.print("Enter name : ");
             String name = clavier.nextLine();
             newPlayer(type, name);
-            System.out.println(p1);
+            System.out.println(Game.ANSI_GREEN + p1+ Game.ANSI_RESET);
         } else if (this.newPlayer.equals("no")) {
             this.mainMenu();
         }
@@ -67,7 +68,7 @@ public class Menu {
         System.out.print("Modify name : ");
         String name = clavier.nextLine();
         newPlayer(type, name);
-        System.out.println(p1);
+        System.out.println(Game.ANSI_GREEN + p1+ Game.ANSI_RESET);
     }
 
     public void newPlayer(String type, String name) {
@@ -94,7 +95,7 @@ public class Menu {
                 p1 = new Warrior("guerrier", "player 1");
             }
             resetPlayer(p1);
-            System.out.println(savePlayer);
+            System.out.println(Game.ANSI_GREEN + savePlayer+ Game.ANSI_RESET);
             Game newGame = new Game(savePlayer);
         } else if (this.startGame.equals("no")) {
             this.mainMenu();
