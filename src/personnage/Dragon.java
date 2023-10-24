@@ -8,6 +8,7 @@ public class Dragon extends Ennemi {
     }
     @Override
     public void interaction(Personnage player) {
-        System.out.println("Dragon attacks");
+        System.out.print("Dragon");
+        super.interaction(player);
     }
 }

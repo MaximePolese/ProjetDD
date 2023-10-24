@@ -8,6 +8,7 @@ public class Gobelin extends Ennemi {
     }
     @Override
     public void interaction(Personnage player) {
-        System.out.println("Gobelin attacks");
+        System.out.print("Gobelin");
+        super.interaction(player);
     }
 }

@@ -8,6 +8,7 @@ public class Sorcier extends Ennemi {
     }
     @Override
     public void interaction(Personnage player) {
-        System.out.println("Sorcier attacks");
+        System.out.print("Sorcier");
+        super.interaction(player);
     }
 }

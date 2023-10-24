@@ -9,6 +9,7 @@ public abstract class Ennemi extends Personnage implements Case {
 
     @Override
     public void interaction(Personnage player) {
-        System.out.println("enemies attack");
+        System.out.println(" veut la BAGARRE !");
+        player.fight(this);
     }
 }

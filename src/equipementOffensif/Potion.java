@@ -25,7 +25,6 @@ public abstract class Potion extends EquipementOffensif {
     public void interaction(Personnage player) {
         System.out.println(" potion found");
         player.heals(this);
-        System.out.println("new player's life : " + player.getLife());
     }
 
     public void setHealth(int health) {

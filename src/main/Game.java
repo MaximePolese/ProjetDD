@@ -9,12 +9,11 @@ import java.util.ArrayList;
 public class Game {
     private ArrayList<Case> board;
     private int dice;
-    private int playerPos;
 
     public Game(Personnage player) {
         this.randomInitBoard();
 //        this.manualInitBoard();
-        this.initPlayer();
+        this.initPlayer(player);
         try {
             this.playGame(player);
         } catch (PersonnageHorsPlateauException e1) {
@@ -130,9 +129,9 @@ public class Game {
 //        System.out.println(" ");
 //    }
 
-    public void initPlayer() {
-        playerPos = 0;
-        System.out.println("Player en position : " + (playerPos + 1));
+    public void initPlayer(Personnage player) {
+        player.setPlayerPos(0);
+        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
     }
 
     public void lancerDe() {
@@ -146,19 +145,35 @@ public class Game {
     }
 
     public void movePlayer(Personnage player) throws PersonnageHorsPlateauException {
-        playerPos = playerPos + dice;
-        if (playerPos > 63) {
+        player.setPlayerPos(player.getPlayerPos() + dice);
+        if (player.getPlayerPos() > 63) {
             throw new PersonnageHorsPlateauException(player);
         }
-        System.out.println("Player en position : " + (playerPos + 1));
+        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
     }
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
-        while (playerPos <= 63) {
+        while (player.getPlayerPos() <= 63) {
             this.lancerDe();
             this.movePlayer(player);
-            board.get(playerPos).interaction(player);
+            board.get(player.getPlayerPos()).interaction(player);
         }
+    }
+
+    public ArrayList<Case> getBoard() {
+        return board;
+    }
+
+    public void setBoard(ArrayList<Case> board) {
+        this.board = board;
+    }
+
+    public int getDice() {
+        return dice;
+    }
+
+    public void setDice(int dice) {
+        this.dice = dice;
     }
 
     public static final String ANSI_RESET = "\u001B[0m";
