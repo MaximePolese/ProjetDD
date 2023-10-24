@@ -24,8 +24,67 @@ public class Game {
 
     public void randomInitBoard() {
         board = new ArrayList<Case>();
-        for (int i = 0; i < 64; i++) {
+        int dragon = 0;
+        int sorcier = 0;
+        int gobelin = 0;
+        int massue = 0;
+        int epee = 0;
+        int eclair = 0;
+        int bouleDeFeu = 0;
+        int smallPotion = 0;
+        int bigPotion = 0;
+        int caseVide = 0;
+        int random;
+        boolean caseRemplie = false;
 
+        board.add(new CaseVide());
+        System.out.println("0 " + board.get(0));
+        for (int i = 1; i < 64; i++) {
+            caseRemplie = false;
+            while (!caseRemplie) {
+                random = (int) Math.floor(Math.random() * (10 - 1 + 1) + 1);
+                if (random == 1 && dragon < 4) {
+                    board.add(new Dragon());
+                    dragon++;
+                    caseRemplie = true;
+                } else if (random == 2 && sorcier < 10) {
+                    board.add(new Sorcier());
+                    sorcier++;
+                    caseRemplie = true;
+                } else if (random == 3 && gobelin < 10) {
+                    board.add(new Gobelin());
+                    gobelin++;
+                    caseRemplie = true;
+                } else if (random == 4 && massue < 5) {
+                    board.add(new Massue());
+                    massue++;
+                    caseRemplie = true;
+                } else if (random == 5 && epee < 4) {
+                    board.add(new Epee());
+                    epee++;
+                    caseRemplie = true;
+                } else if (random == 6 && eclair < 5) {
+                    board.add(new Eclair());
+                    eclair++;
+                    caseRemplie = true;
+                } else if (random == 7 && bouleDeFeu < 2) {
+                    board.add(new BouleDeFeu());
+                    bouleDeFeu++;
+                    caseRemplie = true;
+                } else if (random == 8 && smallPotion < 6) {
+                    board.add(new SmallPotion());
+                    smallPotion++;
+                    caseRemplie = true;
+                } else if (random == 9 && bigPotion < 2) {
+                    board.add(new BigPotion());
+                    bigPotion++;
+                    caseRemplie = true;
+                } else if (random == 10 && caseVide < 16) {
+                    board.add(new CaseVide());
+                    caseVide++;
+                    caseRemplie = true;
+                }
+            }
             System.out.println(i + " " + board.get(i));
         }
         System.out.println(" ");
@@ -41,7 +100,7 @@ public class Game {
 //                    board.add(new Sorcier());
 //                    break;
 //                case 3, 6, 9, 12, 15, 18, 21, 24, 27, 30:
-//                    board.add(new Gobelin());
+//                    board.add(new Sorcier());
 //                    break;
 //                case 2, 5, 11, 22, 38:
 //                    board.add(new Massue());

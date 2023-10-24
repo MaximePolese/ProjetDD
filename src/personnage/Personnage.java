@@ -19,13 +19,14 @@ public abstract class Personnage {
         this.type = type;
     }
 
-    public void heals(Potion sousoupe){
+    public void heals(Potion sousoupe) {
         this.life += sousoupe.getHealth();
-        if (this.life > this.maxLife){
+        if (this.life > this.maxLife) {
             this.life = this.maxLife;
         }
     }
-    public void newItem(EquipementOffensif item){
+
+    public void newItem(EquipementOffensif item) {
         if (item.getWeaponAttack() > this.getOffensiveItem().getWeaponAttack() && item.getWeaponType().equals(this.getOffensiveItem().getWeaponType())) {
             this.offensiveItem = item;
             System.out.println("new weapon : " + item.getWeaponName());
@@ -33,6 +34,7 @@ public abstract class Personnage {
             System.out.println("non-equiped weapon : " + item.getWeaponName());
         }
     }
+
     @Override
     public String toString() {
         return "Personnage{" +
@@ -100,12 +102,5 @@ public abstract class Personnage {
     public void setMaxLife(int maxLife) {
         this.maxLife = maxLife;
     }
-//    public int getPlayerPos() {
-//        return playerPos;
-//    }
-//
-//    public void setPlayerPos(int playerPos) {
-//        this.playerPos = playerPos;
-//    }
 }
 
