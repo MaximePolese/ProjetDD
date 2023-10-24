@@ -17,8 +17,8 @@ public class Game {
         this.initPlayer();
         try {
             this.playGame(player);
-        } catch (PersonnageHorsPlateauException e) {
-            System.out.println(player.getName() + " Win !!!");
+        } catch (PersonnageHorsPlateauException e1) {
+            System.out.println(e1.getMessage());
         }
     }
 
@@ -35,7 +35,7 @@ public class Game {
         int bigPotion = 0;
         int caseVide = 0;
         int random;
-        boolean caseRemplie = false;
+        boolean caseRemplie;
 
         board.add(new CaseVide());
         System.out.println(ANSI_BLUE + "0 " + board.get(0));
@@ -145,10 +145,10 @@ public class Game {
         }
     }
 
-    public void movePlayer() throws PersonnageHorsPlateauException {
+    public void movePlayer(Personnage player) throws PersonnageHorsPlateauException {
         playerPos = playerPos + dice;
         if (playerPos > 63) {
-            throw new PersonnageHorsPlateauException();
+            throw new PersonnageHorsPlateauException(player);
         }
         System.out.println("Player en position : " + (playerPos + 1));
     }
@@ -156,11 +156,7 @@ public class Game {
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
         while (playerPos <= 63) {
             this.lancerDe();
-            try {
-                this.movePlayer();
-            } catch (PersonnageHorsPlateauException e) {
-                throw e;
-            }
+            this.movePlayer(player);
             board.get(playerPos).interaction(player);
         }
     }

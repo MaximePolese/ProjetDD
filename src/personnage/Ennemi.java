@@ -2,8 +2,8 @@ package personnage;
 
 import main.Case;
 
-public class Ennemi extends Personnage implements Case {
-    public Ennemi(String name) {
+public abstract class Ennemi extends Personnage implements Case {
+    protected Ennemi(String name) {
         super("ennemi", name);
     }
 

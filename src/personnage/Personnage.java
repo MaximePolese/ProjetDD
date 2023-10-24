@@ -34,6 +34,9 @@ public abstract class Personnage {
         }
     }
 
+//    public void fight(Ennemi mechant){
+//    }
+
     @Override
     public String toString() {
         return "Personnage {" +
