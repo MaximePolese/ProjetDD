@@ -3,7 +3,7 @@ package personnage;
 import equipementDefensif.EquipementDefensif;
 import equipementOffensif.EquipementOffensif;
 import equipementOffensif.Potion;
-import main.Game;
+import main.*;
 
 import java.util.Scanner;
 
@@ -40,12 +40,12 @@ public abstract class Personnage {
     }
 
     public void fight(Ennemi mechant) {
-        String fuite;
+        String fuite = "no";
         Scanner clavier = new Scanner(System.in);
-        System.out.println("Do you want to run ? yes/no");
-        fuite = clavier.nextLine();
-        if (fuite.equals("no")) {
-            while (mechant.getLife() > 0 && this.life > 0) {
+        while (fuite.equals("no") && mechant.getLife() > 0 && this.life > 0) {
+            System.out.print("Do you want to run ? yes/no ");
+            fuite = clavier.nextLine();
+            if (fuite.equals("no")) {
                 if (this.life > 0) {
                     System.out.println(this.name + " attacks");
                     mechant.setLife(mechant.getLife() - (this.strength + this.offensiveItem.getWeaponAttack()));
@@ -53,15 +53,18 @@ public abstract class Personnage {
                 }
                 if (mechant.getLife() <= 0) {
                     System.out.println("Enemy dies");
-//            board.setBoard(remove(mechant));
+//                    getBoard().set(this.playerPos, new CaseVide());
                 } else {
                     System.out.println("Enemy attacks !");
                     this.life = this.life - mechant.getStrength();
                     System.out.println("new player's life : " + this.life);
                 }
+            } else if (fuite.equals("yes")) {
+                int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
+                System.out.println("Dice result : " + dice);
+                this.playerPos = this.playerPos - dice;
+                System.out.println("Player en position : " + this.playerPos + 1);
             }
-        } else {
-
         }
     }
 

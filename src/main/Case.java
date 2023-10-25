@@ -1,6 +1,6 @@
 package main;
 
-import personnage.Personnage;
+import personnage.*;
 
 public interface Case {
 

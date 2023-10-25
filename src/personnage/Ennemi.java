@@ -1,6 +1,7 @@
 package personnage;
 
 import main.Case;
+import main.Game;
 
 public abstract class Ennemi extends Personnage implements Case {
     protected Ennemi(String name) {

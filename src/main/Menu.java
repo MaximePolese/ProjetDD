@@ -1,7 +1,6 @@
 package main;
 
 import personnage.*;
-import main.Game;
 
 import java.util.Scanner;
 
