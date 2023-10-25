@@ -11,8 +11,8 @@ public class Game {
     private int dice;
 
     public Game(Personnage player) {
-        this.randomInitBoard();
 //        this.manualInitBoard();
+        this.randomInitBoard();
         this.initPlayer(player);
         try {
             this.playGame(player);
@@ -158,7 +158,7 @@ public class Game {
             this.lancerDe();
             this.movePlayer(player);
             result = board.get(player.getPlayerPos()).interaction(player);
-            if (result == GameState.enemyDies){
+            if (result == GameState.enemyDies) {
                 this.deleteEnemy(player);
             }
 
@@ -170,9 +170,10 @@ public class Game {
         }
     }
 
-    public void deleteEnemy(Personnage player){
-            board.set(player.getPlayerPos(), new CaseVide());
+    public void deleteEnemy(Personnage player) {
+        board.set(player.getPlayerPos(), new CaseVide());
     }
+
     public ArrayList<Case> getBoard() {
         return board;
     }

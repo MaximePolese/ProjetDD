@@ -51,6 +51,7 @@ public abstract class Personnage {
                     mechant.setLife(mechant.getLife() - (this.strength + this.offensiveItem.getWeaponAttack()));
                     System.out.println("new enemy's life : " + mechant.getLife());
                 } else {
+                    System.out.println("GAME OVER !");
                     return GameState.gameover;
                 }
                 if (mechant.getLife() <= 0) {
