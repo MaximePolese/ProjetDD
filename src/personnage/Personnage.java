@@ -3,7 +3,6 @@ package personnage;
 import equipementDefensif.EquipementDefensif;
 import equipementOffensif.EquipementOffensif;
 import equipementOffensif.Potion;
-import main.*;
 
 import java.util.Scanner;
 
@@ -53,7 +52,6 @@ public abstract class Personnage {
                 }
                 if (mechant.getLife() <= 0) {
                     System.out.println("Enemy dies");
-//                    getBoard().set(this.playerPos, new CaseVide());
                 } else {
                     System.out.println("Enemy attacks !");
                     this.life = this.life - mechant.getStrength();
@@ -63,7 +61,7 @@ public abstract class Personnage {
                 int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
                 System.out.println("Dice result : " + dice);
                 this.playerPos = this.playerPos - dice;
-                System.out.println("Player en position : " + this.playerPos + 1);
+                System.out.println("Player en position : " + (this.playerPos + 1));
             }
         }
     }
@@ -144,4 +142,3 @@ public abstract class Personnage {
         this.playerPos = playerPos;
     }
 }
-

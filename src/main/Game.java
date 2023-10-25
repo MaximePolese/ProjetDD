@@ -153,10 +153,12 @@ public class Game {
     }
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
-        while (player.getPlayerPos() <= 63) {
+        while (player.getPlayerPos() <= 63) { // || game over
             this.lancerDe();
             this.movePlayer(player);
             board.get(player.getPlayerPos()).interaction(player);
+//            this.stat();
+//            this.exit();
         }
     }
 
