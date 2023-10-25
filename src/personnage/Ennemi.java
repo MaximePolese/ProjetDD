@@ -1,6 +1,7 @@
 package personnage;
 
 import main.Case;
+import main.GameState;
 
 public abstract class Ennemi extends Personnage implements Case {
     protected Ennemi(String name) {
@@ -8,8 +9,8 @@ public abstract class Ennemi extends Personnage implements Case {
     }
 
     @Override
-    public void interaction(Personnage player) {
+    public GameState interaction(Personnage player) {
         System.out.println(" veut la BAGARRE !");
-        player.fight(this);
+        return player.fight(this);
     }
 }

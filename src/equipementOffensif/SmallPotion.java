@@ -1,5 +1,6 @@
 package equipementOffensif;
 
+import main.GameState;
 import personnage.Personnage;
 import personnage.Warrior;
 
@@ -11,8 +12,8 @@ public class SmallPotion extends Potion {
     }
 
     @Override
-    public void interaction(Personnage player) {
+    public GameState interaction(Personnage player) {
         System.out.print("Small");
-        super.interaction(player);
+        return super.interaction(player);
     }
 }

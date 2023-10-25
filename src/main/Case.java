@@ -4,6 +4,6 @@ import personnage.*;
 
 public interface Case {
 
-    public void interaction(Personnage player);
+    public GameState interaction(Personnage player);
 
 }

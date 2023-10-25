@@ -1,5 +1,7 @@
 package personnage;
 
+import main.GameState;
+
 public class Dragon extends Ennemi {
     public Dragon() {
         super("Dragon");
@@ -7,8 +9,8 @@ public class Dragon extends Ennemi {
         this.setStrength(4);
     }
     @Override
-    public void interaction(Personnage player) {
+    public GameState interaction(Personnage player) {
         System.out.print("Dragon");
-        super.interaction(player);
+        return super.interaction(player);
     }
 }

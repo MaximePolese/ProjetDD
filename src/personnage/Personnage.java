@@ -3,6 +3,7 @@ package personnage;
 import equipementDefensif.EquipementDefensif;
 import equipementOffensif.EquipementOffensif;
 import equipementOffensif.Potion;
+import main.GameState;
 
 import java.util.Scanner;
 
@@ -38,7 +39,7 @@ public abstract class Personnage {
         }
     }
 
-    public void fight(Ennemi mechant) {
+    public GameState fight(Ennemi mechant) {
         String fuite = "no";
         Scanner clavier = new Scanner(System.in);
         while (fuite.equals("no") && mechant.getLife() > 0 && this.life > 0) {
@@ -49,9 +50,12 @@ public abstract class Personnage {
                     System.out.println(this.name + " attacks");
                     mechant.setLife(mechant.getLife() - (this.strength + this.offensiveItem.getWeaponAttack()));
                     System.out.println("new enemy's life : " + mechant.getLife());
+                } else {
+                    return GameState.gameover;
                 }
                 if (mechant.getLife() <= 0) {
                     System.out.println("Enemy dies");
+                    return GameState.enemyDies;
                 } else {
                     System.out.println("Enemy attacks !");
                     this.life = this.life - mechant.getStrength();
@@ -64,6 +68,7 @@ public abstract class Personnage {
                 System.out.println("Player en position : " + (this.playerPos + 1));
             }
         }
+        return GameState.continu;
     }
 
     @Override

@@ -7,8 +7,9 @@ public class CaseVide implements Case {
     }
 
     @Override
-    public void interaction(Personnage player) {
+    public GameState interaction(Personnage player) {
         System.out.println("Case vide");
+        return GameState.continu;
     }
 
     @Override

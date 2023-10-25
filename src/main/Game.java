@@ -153,15 +153,26 @@ public class Game {
     }
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
-        while (player.getPlayerPos() <= 63) { // || game over
+        GameState result = GameState.continu;
+        while (player.getPlayerPos() <= 63 || result != GameState.gameover) {
             this.lancerDe();
             this.movePlayer(player);
-            board.get(player.getPlayerPos()).interaction(player);
-//            this.stat();
-//            this.exit();
+            result = board.get(player.getPlayerPos()).interaction(player);
+            if (result == GameState.enemyDies){
+                this.deleteEnemy(player);
+            }
+
+//            if spacebar {
+//              this.showMenu();
+//              this.stat();
+//              this.exit();
+//            }
         }
     }
 
+    public void deleteEnemy(Personnage player){
+            board.set(player.getPlayerPos(), new CaseVide());
+    }
     public ArrayList<Case> getBoard() {
         return board;
     }

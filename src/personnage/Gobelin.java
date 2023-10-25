@@ -1,5 +1,7 @@
 package personnage;
 
+import main.GameState;
+
 public class Gobelin extends Ennemi {
     public Gobelin() {
         super("Gobelin");
@@ -7,8 +9,8 @@ public class Gobelin extends Ennemi {
         this.setStrength(1);
     }
     @Override
-    public void interaction(Personnage player) {
+    public GameState interaction(Personnage player) {
         System.out.print("Gobelin");
-        super.interaction(player);
+        return super.interaction(player);
     }
 }

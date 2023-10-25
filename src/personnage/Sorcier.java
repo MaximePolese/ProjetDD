@@ -1,5 +1,7 @@
 package personnage;
 
+import main.GameState;
+
 public class Sorcier extends Ennemi {
     public Sorcier() {
         super("Sorcier");
@@ -7,8 +9,8 @@ public class Sorcier extends Ennemi {
         this.setStrength(2);
     }
     @Override
-    public void interaction(Personnage player) {
+    public GameState interaction(Personnage player) {
         System.out.print("Sorcier");
-        super.interaction(player);
+        return super.interaction(player);
     }
 }
