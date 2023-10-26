@@ -20,7 +20,7 @@ public class Menu {
             } else if (this.menuChoice == 2) {
                 if (this.p1 == null) {
                     System.out.println("First, you have to create new player ! back to menu ......");
-                    this.mainMenu();
+                    menuChoice = 0;
                 } else {
                     this.modifyPlayer();
                 }
@@ -33,7 +33,6 @@ public class Menu {
     }
 
     public void mainMenu() {
-        menuChoice = 0;
         while (menuChoice < 1 || menuChoice > 4) {
             System.out.println(Game.ANSI_RED + "Donjons & Dragons" + Game.ANSI_RESET);
             System.out.println("1 - New player");
@@ -57,7 +56,7 @@ public class Menu {
         newPlayer(type, name);
         System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
         System.out.println("Your player is created ! back to menu ......");
-        this.mainMenu();
+        menuChoice = 0;
     }
 
     public void modifyPlayer() {
@@ -68,7 +67,7 @@ public class Menu {
         newPlayer(type, name);
         System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
         System.out.println("Your player is modified! back to menu ......");
-        this.mainMenu();
+        menuChoice = 0;
     }
 
     public void newPlayer(String type, String name) {
@@ -98,7 +97,7 @@ public class Menu {
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
             Game newGame = new Game(savePlayer);
         } else if (this.startGame.equals("n")) {
-            this.mainMenu();
+            menuChoice = 0;
         }
     }
 
@@ -106,7 +105,7 @@ public class Menu {
         System.out.print("Exit game ? y/n ");
         exitGame = clavier.nextLine();
         if (this.exitGame.equals("n")) {
-            this.mainMenu();
+            menuChoice = 0;
         }
     }
 }

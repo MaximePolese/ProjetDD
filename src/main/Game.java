@@ -98,7 +98,6 @@ public class Game {
 
     public void lancerDe() {
         dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
-//            dice = 1;
         System.out.println("Dice result : " + dice);
     }
 
@@ -150,8 +149,9 @@ public class Game {
     }
 
     public void playerStatus(Personnage player) {
-        System.out.println(player);
+        System.out.println(ANSI_GREEN + player + ANSI_RESET);
         pauseChoice = 0;
+        //ajouter un retour menu pause
     }
 
     public void resumeGame() {
