@@ -46,14 +46,9 @@ public abstract class Personnage {
             System.out.print("Do you want to run ? yes/no ");
             fuite = clavier.nextLine();
             if (fuite.equals("no")) {
-                if (this.life > 0) {
-                    System.out.println(this.name + " attacks");
-                    mechant.setLife(mechant.getLife() - (this.strength + this.offensiveItem.getWeaponAttack()));
-                    System.out.println("new enemy's life : " + mechant.getLife());
-                } else {
-                    System.out.println("GAME OVER !");
-                    return GameState.gameover;
-                }
+                System.out.println(this.name + " attacks");
+                mechant.setLife(mechant.getLife() - (this.strength + this.offensiveItem.getWeaponAttack()));
+                System.out.println("new enemy's life : " + mechant.getLife());
                 if (mechant.getLife() <= 0) {
                     System.out.println("Enemy dies");
                     return GameState.enemyDies;
@@ -61,6 +56,10 @@ public abstract class Personnage {
                     System.out.println("Enemy attacks !");
                     this.life = this.life - mechant.getStrength();
                     System.out.println("new player's life : " + this.life);
+                    if (this.life <= 0) {
+                        System.out.println("GAME OVER !");
+                        return GameState.gameover;
+                    }
                 }
             } else if (fuite.equals("yes")) {
                 int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);

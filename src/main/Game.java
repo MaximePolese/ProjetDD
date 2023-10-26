@@ -154,7 +154,7 @@ public class Game {
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
         GameState result = GameState.continu;
-        while (player.getPlayerPos() <= 63 || result != GameState.gameover) {
+        while (player.getPlayerPos() <= 63 && result != GameState.gameover) {
             this.lancerDe();
             this.movePlayer(player);
             result = board.get(player.getPlayerPos()).interaction(player);
