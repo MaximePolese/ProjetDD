@@ -57,7 +57,7 @@ public abstract class Personnage {
                     this.life = this.life - mechant.getStrength();
                     System.out.println("new player's life : " + this.life);
                     if (this.life <= 0) {
-                        System.out.println("GAME OVER !");
+                        System.out.println(ANSI_RED_BACKGROUND + "GAME OVER !" + ANSI_RESET);
                         return GameState.gameover;
                     }
                 }
@@ -65,6 +65,9 @@ public abstract class Personnage {
                 int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
                 System.out.println("Dice result : " + dice);
                 this.playerPos = this.playerPos - dice;
+                if (this.playerPos < 0) {
+                    this.playerPos = 0;
+                }
                 System.out.println("Player en position : " + (this.playerPos + 1));
             }
         }
@@ -146,4 +149,7 @@ public abstract class Personnage {
     public void setPlayerPos(int playerPos) {
         this.playerPos = playerPos;
     }
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
 }

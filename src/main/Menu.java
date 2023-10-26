@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Menu {
     private Scanner clavier = new Scanner(System.in);
-    private int menuChoice;
+    private int menuChoice = 0;
     private String newPlayer;
     private String startGame;
     private String exitGame = "no";
@@ -25,7 +25,7 @@ public class Menu {
                     this.mainMenu();
                 } else {
                     modifyPlayer();
-                    System.out.println("Your player is modify ! back to menu ......");
+                    System.out.println("Your player is modified! back to menu ......");
                     this.mainMenu();
                 }
             } else if (this.menuChoice == 3) {
@@ -37,13 +37,19 @@ public class Menu {
     }
 
     public void mainMenu() {
-        System.out.println("1 - New player");
-        System.out.println("2 - Modify player");
-        System.out.println("3 - Start new game");
-        System.out.println("4 - Exit game");
-        System.out.print("Enter your choice : ");
-        menuChoice = clavier.nextInt();
-        clavier.nextLine();
+        menuChoice = 0;
+        while (menuChoice < 1 || menuChoice > 4) {
+            System.out.println("1 - New player");
+            System.out.println("2 - Modify player");
+            System.out.println("3 - Start new game");
+            System.out.println("4 - Exit game");
+            System.out.print("Enter your choice : ");
+            menuChoice = clavier.nextInt();
+            clavier.nextLine();
+            if (menuChoice < 1 || menuChoice > 4){
+                System.out.println("Select a right number ...");
+            }
+        }
     }
 
     public void addNewPlayer() {
@@ -55,7 +61,7 @@ public class Menu {
             System.out.print("Enter name : ");
             String name = clavier.nextLine();
             newPlayer(type, name);
-            System.out.println(Game.ANSI_GREEN + p1+ Game.ANSI_RESET);
+            System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
         } else if (this.newPlayer.equals("no")) {
             this.mainMenu();
         }
@@ -67,7 +73,7 @@ public class Menu {
         System.out.print("Modify name : ");
         String name = clavier.nextLine();
         newPlayer(type, name);
-        System.out.println(Game.ANSI_GREEN + p1+ Game.ANSI_RESET);
+        System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
     }
 
     public void newPlayer(String type, String name) {
@@ -94,7 +100,7 @@ public class Menu {
                 p1 = new Warrior("guerrier", "player 1");
             }
             resetPlayer(p1);
-            System.out.println(Game.ANSI_GREEN + savePlayer+ Game.ANSI_RESET);
+            System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
             Game newGame = new Game(savePlayer);
         } else if (this.startGame.equals("no")) {
             this.mainMenu();

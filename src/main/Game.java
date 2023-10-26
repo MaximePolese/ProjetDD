@@ -9,12 +9,15 @@ import java.util.ArrayList;
 public class Game {
     private ArrayList<Case> board;
     private int dice;
+    private Scanner keyboard = new Scanner(System.in);
+    private int pauseChoice = 0;
 
     public Game(Personnage player) {
 //        this.manualInitBoard();
         this.randomInitBoard();
         this.initPlayer(player);
         try {
+            System.out.println("Write pause anytime to access pause menu");
             this.playGame(player);
         } catch (PersonnageHorsPlateauException e1) {
             System.out.println(e1.getMessage());
@@ -89,6 +92,85 @@ public class Game {
         System.out.println(" " + ANSI_RESET);
     }
 
+    public void initPlayer(Personnage player) {
+        player.setPlayerPos(0);
+        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
+    }
+
+    public void lancerDe() {
+        dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
+//            dice = 1;
+        System.out.println("Dice result : " + dice);
+    }
+
+    public void movePlayer(Personnage player) throws PersonnageHorsPlateauException {
+        player.setPlayerPos(player.getPlayerPos() + dice);
+        if (player.getPlayerPos() > 63) {
+            throw new PersonnageHorsPlateauException(player);
+        }
+        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
+    }
+
+    public void playGame(Personnage player) throws PersonnageHorsPlateauException {
+        GameState result = GameState.continu;
+        while (player.getPlayerPos() <= 63 && result != GameState.gameover) {
+            System.out.print("Press enter to play : ");
+            if (keyboard.nextLine().equals("pause")) {
+                this.pauseMenu();
+                if (this.pauseChoice == 1) {
+                    this.playerStatus(player);
+                } else if (this.pauseChoice == 2) {
+                    this.resumeGame();
+                } else if (this.pauseChoice == 3) {
+                    this.exit();
+                }
+            } else {
+                this.lancerDe();
+                this.movePlayer(player);
+                result = board.get(player.getPlayerPos()).interaction(player);
+                if (result == GameState.enemyDies) {
+                    this.deleteEnemy(player);
+                }
+            }
+        }
+    }
+
+    public void pauseMenu() {
+        while (pauseChoice < 1 || pauseChoice > 3) {
+            System.out.println("________ PAUSE ________");
+            System.out.println("1 - Player's status");
+            System.out.println("2 - Resume game");
+            System.out.println("3 - Exit to main menu");
+            System.out.print("Enter your choice : ");
+            pauseChoice = keyboard.nextInt();
+            keyboard.nextLine();
+            if (pauseChoice < 1 || pauseChoice > 3) {
+                System.out.println("Select a right number ...");
+            }
+        }
+    }
+
+    public void playerStatus(Personnage player) {
+        System.out.println(player);
+        pauseChoice = 0;
+    }
+
+    public void resumeGame() {
+    }
+
+    public void exit() {
+
+    }
+
+    public void deleteEnemy(Personnage player) {
+        board.set(player.getPlayerPos(), new CaseVide());
+    }
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+
 //    public void manualInitBoard() {
 //        board = new ArrayList<Case>();
 //        for (int i = 0; i < 64; i++) {
@@ -129,80 +211,4 @@ public class Game {
 //        System.out.println(" ");
 //    }
 
-    public void initPlayer(Personnage player) {
-        player.setPlayerPos(0);
-        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
-    }
-
-    public void lancerDe() {
-        Scanner enter = new Scanner(System.in);
-        System.out.print("Press enter to play : ");
-        if (enter.hasNextLine()) {
-            dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
-//            dice = 1;
-            System.out.println("Dice result : " + dice);
-        }
-    }
-
-    public void movePlayer(Personnage player) throws PersonnageHorsPlateauException {
-        player.setPlayerPos(player.getPlayerPos() + dice);
-        if (player.getPlayerPos() > 63) {
-            throw new PersonnageHorsPlateauException(player);
-        }
-        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
-    }
-
-    public void playGame(Personnage player) throws PersonnageHorsPlateauException {
-        GameState result = GameState.continu;
-        while (player.getPlayerPos() <= 63 && result != GameState.gameover) {
-            this.lancerDe();
-            this.movePlayer(player);
-            result = board.get(player.getPlayerPos()).interaction(player);
-            if (result == GameState.enemyDies) {
-                this.deleteEnemy(player);
-            }
-
-//            if spacebar {
-//              this.showMenu();
-//              this.stat();
-//              this.exit();
-//            }
-        }
-    }
-
-    public void deleteEnemy(Personnage player) {
-        board.set(player.getPlayerPos(), new CaseVide());
-    }
-
-    public ArrayList<Case> getBoard() {
-        return board;
-    }
-
-    public void setBoard(ArrayList<Case> board) {
-        this.board = board;
-    }
-
-    public int getDice() {
-        return dice;
-    }
-
-    public void setDice(int dice) {
-        this.dice = dice;
-    }
-
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
-    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 }
