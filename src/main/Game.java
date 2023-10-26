@@ -17,7 +17,7 @@ public class Game {
         this.randomInitBoard();
         this.initPlayer(player);
         try {
-            System.out.println("Write pause anytime to access pause menu");
+            System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
             this.playGame(player);
         } catch (PersonnageHorsPlateauException e1) {
             System.out.println(e1.getMessage());
@@ -113,7 +113,7 @@ public class Game {
 
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
         GameState result = GameState.continu;
-        while (player.getPlayerPos() <= 63 && result != GameState.gameover) {
+        while (player.getPlayerPos() < 63 && result != GameState.gameover) {
             System.out.print("Press enter to play : ");
             if (keyboard.nextLine().equals("pause")) {
                 this.pauseMenu();
@@ -122,7 +122,7 @@ public class Game {
                 } else if (this.pauseChoice == 2) {
                     this.resumeGame();
                 } else if (this.pauseChoice == 3) {
-                    this.exit();
+                    result = GameState.gameover;
                 }
             } else {
                 this.lancerDe();
@@ -156,10 +156,8 @@ public class Game {
     }
 
     public void resumeGame() {
-    }
-
-    public void exit() {
-
+        System.out.println("LET'S GO !");
+        pauseChoice = 0;
     }
 
     public void deleteEnemy(Personnage player) {
