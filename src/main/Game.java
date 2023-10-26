@@ -13,11 +13,11 @@ public class Game {
     private int pauseChoice = 0;
 
     public Game(Personnage player) {
-//        this.manualInitBoard();
+//      this.manualInitBoard();
         this.randomInitBoard();
+        System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
         this.initPlayer(player);
         try {
-            System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
             this.playGame(player);
         } catch (PersonnageHorsPlateauException e1) {
             System.out.println(e1.getMessage());
@@ -89,7 +89,6 @@ public class Game {
             }
             System.out.println(ANSI_BLUE + i + " " + board.get(i));
         }
-        System.out.println(" " + ANSI_RESET);
     }
 
     public void initPlayer(Personnage player) {
@@ -114,7 +113,7 @@ public class Game {
     public void playGame(Personnage player) throws PersonnageHorsPlateauException {
         GameState result = GameState.continu;
         while (player.getPlayerPos() < 63 && result != GameState.gameover) {
-            System.out.print("Press enter to play : ");
+            System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {
                 this.pauseMenu();
                 if (this.pauseChoice == 1) {

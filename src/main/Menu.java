@@ -8,12 +8,12 @@ public class Menu {
     private Scanner clavier = new Scanner(System.in);
     private int menuChoice = 0;
     private String startGame;
-    private String exitGame = "no";
+    private String exitGame = "n";
     private Personnage p1;
     private Personnage savePlayer;
 
     public void launchMenu() {
-        while (!this.exitGame.equals("yes")) {
+        while (!this.exitGame.equals("y")) {
             this.mainMenu();
             if (this.menuChoice == 1) {
                 this.addNewPlayer();
@@ -88,24 +88,24 @@ public class Menu {
     }
 
     public void startNewGame() {
-        System.out.print("Start new game ? yes/no ");
+        System.out.print("Start new game ? y/n ");
         startGame = clavier.nextLine();
-        if (this.startGame.equals("yes")) {
+        if (this.startGame.equals("y")) {
             if (this.p1 == null) {
                 p1 = new Warrior("guerrier", "player 1");
             }
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
             Game newGame = new Game(savePlayer);
-        } else if (this.startGame.equals("no")) {
+        } else if (this.startGame.equals("n")) {
             this.mainMenu();
         }
     }
 
     public void exitGame() {
-        System.out.print("Exit game ? yes/no ");
+        System.out.print("Exit game ? y/n ");
         exitGame = clavier.nextLine();
-        if (this.exitGame.equals("no")) {
+        if (this.exitGame.equals("n")) {
             this.mainMenu();
         }
     }

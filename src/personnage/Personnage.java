@@ -40,12 +40,12 @@ public abstract class Personnage {
     }
 
     public GameState fight(Ennemi mechant) {
-        String fuite = "no";
+        String fuite = "n";
         Scanner clavier = new Scanner(System.in);
-        while (fuite.equals("no") && mechant.getLife() > 0 && this.life > 0) {
-            System.out.print("Do you want to run ? yes/no ");
+        while (fuite.equals("n") && mechant.getLife() > 0 && this.life > 0) {
+            System.out.print("Do you want to run ? y/n ");
             fuite = clavier.nextLine();
-            if (fuite.equals("no")) {
+            if (fuite.equals("n")) {
                 System.out.println(this.name + " attacks");
                 mechant.setLife(mechant.getLife() - (this.strength + this.offensiveItem.getWeaponAttack()));
                 System.out.println("new enemy's life : " + mechant.getLife());
@@ -61,7 +61,7 @@ public abstract class Personnage {
                         return GameState.gameover;
                     }
                 }
-            } else if (fuite.equals("yes")) {
+            } else if (fuite.equals("y")) {
                 int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
                 System.out.println("Dice result : " + dice);
                 this.playerPos = this.playerPos - dice;
