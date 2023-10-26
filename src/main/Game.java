@@ -167,6 +167,7 @@ public class Game {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
 
 //    public void manualInitBoard() {
 //        board = new ArrayList<Case>();

@@ -3,7 +3,7 @@ package personnage;
 import equipementDefensif.EquipementDefensif;
 import equipementOffensif.EquipementOffensif;
 import equipementOffensif.Potion;
-import main.GameState;
+import main.*;
 
 import java.util.Scanner;
 
@@ -57,7 +57,7 @@ public abstract class Personnage {
                     this.life = this.life - mechant.getStrength();
                     System.out.println("new player's life : " + this.life);
                     if (this.life <= 0) {
-                        System.out.println(ANSI_RED_BACKGROUND + "GAME OVER !" + ANSI_RESET);
+                        System.out.println(Game.ANSI_RED_BACKGROUND + "GAME OVER !" + Game.ANSI_RESET);
                         return GameState.gameover;
                     }
                 }
@@ -149,7 +149,4 @@ public abstract class Personnage {
     public void setPlayerPos(int playerPos) {
         this.playerPos = playerPos;
     }
-
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
 }
