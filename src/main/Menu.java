@@ -125,13 +125,5 @@ public class Menu {
             menuChoice = 0;
         }
     }
-
-    public int getMenuChoice() {
-        return menuChoice;
-    }
-
-    public void setMenuChoice(int menuChoice) {
-        this.menuChoice = menuChoice;
-    }
 }
 
