@@ -104,7 +104,7 @@ public class Game {
 
     public void movePlayer(Personnage player) throws PersonnageHorsPlateauException {
         player.setPlayerPos(player.getPlayerPos() + dice);
-        if (player.getPlayerPos() > 63) {
+        if (player.getPlayerPos() >= 63) {
             throw new PersonnageHorsPlateauException(player);
         }
         System.out.println("Player en position : " + (player.getPlayerPos() + 1));
