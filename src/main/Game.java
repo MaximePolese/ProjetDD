@@ -11,6 +11,7 @@ public class Game {
     private int dice;
     private Scanner keyboard = new Scanner(System.in);
     private int pauseChoice = 0;
+    public GameState result = GameState.continu;
 
     public Game(Personnage player) {
 //      this.manualInitBoard();
@@ -18,7 +19,7 @@ public class Game {
         System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
         this.initPlayer(player);
         try {
-            this.playGame(player);
+            result = this.playGame(player);
         } catch (PersonnageHorsPlateauException e1) {
             System.out.println(e1.getMessage());
         }
@@ -110,7 +111,6 @@ public class Game {
     }
 
     public GameState playGame(Personnage player) throws PersonnageHorsPlateauException {
-        GameState result = GameState.continu;
         while (player.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {

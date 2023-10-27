@@ -110,9 +110,9 @@ public class Menu {
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
             Game newGame = new Game(savePlayer);
-//            if (GameState.exit) {
-//                menuChoice = 0;
-//            }
+            if (newGame.result == GameState.exit) {
+                menuChoice = 0;
+            }
         } else if (this.startGame.equals("n")) {
             menuChoice = 0;
         }

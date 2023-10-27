@@ -40,9 +40,9 @@ public abstract class Personnage {
     }
 
     public GameState fight(Ennemi mechant) {
-        String fuite = "n";
+        String fuite = "";
         Scanner clavier = new Scanner(System.in);
-        while (fuite.equals("n") && mechant.getLife() > 0 && this.life > 0) {
+        while (!fuite.equals("n") && !fuite.equals("y") && mechant.getLife() > 0 && this.life > 0) {
             System.out.print("Do you want to run ? y/n ");
             fuite = clavier.nextLine();
             if (fuite.equals("n")) {
@@ -61,6 +61,7 @@ public abstract class Personnage {
                         return GameState.gameover;
                     }
                 }
+                fuite = "";
             } else if (fuite.equals("y")) {
                 int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
                 System.out.println("Dice result : " + dice);
