@@ -110,6 +110,9 @@ public class Menu {
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
             Game newGame = new Game(savePlayer);
+//            if (GameState.exit) {
+//                menuChoice = 0;
+//            }
         } else if (this.startGame.equals("n")) {
             menuChoice = 0;
         }
@@ -121,6 +124,14 @@ public class Menu {
         if (this.exitGame.equals("n")) {
             menuChoice = 0;
         }
+    }
+
+    public int getMenuChoice() {
+        return menuChoice;
+    }
+
+    public void setMenuChoice(int menuChoice) {
+        this.menuChoice = menuChoice;
     }
 }
 

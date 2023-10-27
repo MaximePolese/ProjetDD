@@ -109,19 +109,22 @@ public class Game {
         System.out.println("Player en position : " + (player.getPlayerPos() + 1));
     }
 
-    public void playGame(Personnage player) throws PersonnageHorsPlateauException {
+    public GameState playGame(Personnage player) throws PersonnageHorsPlateauException {
         GameState result = GameState.continu;
-        while (player.getPlayerPos() < 63 && result != GameState.gameover) {
+        while (player.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {
-                this.pauseMenu();
-                if (this.pauseChoice == 1) {
-                    this.playerStatus(player);
-                } else if (this.pauseChoice == 2) {
-                    this.resumeGame();
-                } else if (this.pauseChoice == 3) {
-                    result = GameState.gameover;
+                while (this.pauseChoice == 0) {
+                    this.pauseMenu();
+                    if (this.pauseChoice == 1) {
+                        this.playerStatus(player);
+                    } else if (this.pauseChoice == 2) {
+                        this.resumeGame();
+                    } else if (this.pauseChoice == 3) {
+                        return GameState.exit;
+                    }
                 }
+                pauseChoice = 0;
             } else {
                 this.lancerDe();
                 this.movePlayer(player);
@@ -131,6 +134,7 @@ public class Game {
                 }
             }
         }
+        return GameState.continu;
     }
 
     public void pauseMenu() {
@@ -151,12 +155,10 @@ public class Game {
     public void playerStatus(Personnage player) {
         System.out.println(ANSI_GREEN + player + ANSI_RESET);
         pauseChoice = 0;
-        //ajouter un retour menu pause
     }
 
     public void resumeGame() {
         System.out.println("LET'S GO !");
-        pauseChoice = 0;
     }
 
     public void deleteEnemy(Personnage player) {
