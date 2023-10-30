@@ -12,12 +12,12 @@ public class Menu {
     private String exitGame = "n";
     private Personnage p1;
     private Personnage savePlayer;
-
     private BDD_CRUD mydb;
 
-    public Menu(){
+    public Menu() {
         mydb = new BDD_CRUD();
     }
+
     public void launchMenu() throws SQLException {
         while (!this.exitGame.equals("y")) {
             this.mainMenu();
@@ -92,27 +92,28 @@ public class Menu {
 
     public void newPlayer(String type, String name) throws SQLException {
         if (type.equals("guerrier")) {
-            p1 = new Warrior(type, name);
+            p1 = new Warrior(type, name, mydb);
         } else if (type.equals("magicien")) {
-            p1 = new Wizard(type, name);
+            p1 = new Wizard(type, name, mydb);
         }
         mydb.createHero(p1);
     }
 
     public void resetPlayer(Personnage player) {
         if (player instanceof Warrior guerrier) {
-            savePlayer = new Warrior(guerrier.getType(), guerrier.getName());
+            savePlayer = new Warrior(guerrier.getType(), guerrier.getName(), mydb);
         } else if (player instanceof Wizard magicien) {
-            savePlayer = new Wizard(magicien.getType(), magicien.getName());
+            savePlayer = new Wizard(magicien.getType(), magicien.getName(), mydb);
         }
     }
 
-    public void startNewGame() {
+    public void startNewGame() throws SQLException {
         System.out.print("Start new game ? y/n ");
         startGame = clavier.nextLine();
         if (this.startGame.equals("y")) {
             if (this.p1 == null) {
-                p1 = new Warrior("guerrier", "player 1");
+                p1 = new Warrior("guerrier", "player 1", mydb);
+                mydb.createHero(p1);
             }
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);

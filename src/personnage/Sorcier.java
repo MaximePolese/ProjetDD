@@ -2,6 +2,8 @@ package personnage;
 
 import main.GameState;
 
+import java.sql.SQLException;
+
 public class Sorcier extends Ennemi {
     public Sorcier() {
         super("Sorcier");
@@ -9,7 +11,7 @@ public class Sorcier extends Ennemi {
         this.setStrength(2);
     }
     @Override
-    public GameState interaction(Personnage player) {
+    public GameState interaction(Personnage player) throws SQLException {
         System.out.print("Sorcier");
         return super.interaction(player);
     }

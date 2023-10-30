@@ -3,6 +3,7 @@ package main;
 import personnage.*;
 import equipementOffensif.*;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class Game {
         this.initPlayer(player);
         try {
             result = this.playGame(player);
-        } catch (PersonnageHorsPlateauException e1) {
+        } catch (PersonnageHorsPlateauException | SQLException e1) {
             System.out.println(e1.getMessage());
         }
     }
@@ -110,7 +111,7 @@ public class Game {
         System.out.println("Player en position : " + (player.getPlayerPos() + 1));
     }
 
-    public GameState playGame(Personnage player) throws PersonnageHorsPlateauException {
+    public GameState playGame(Personnage player) throws PersonnageHorsPlateauException, SQLException {
         while (player.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {

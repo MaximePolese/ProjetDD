@@ -5,9 +5,11 @@ import equipementOffensif.EquipementOffensif;
 import equipementOffensif.Potion;
 import main.*;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public abstract class Personnage {
+    private int id;
     private String type;
     private String name;
     private int life;
@@ -16,10 +18,12 @@ public abstract class Personnage {
     private EquipementDefensif defensiveItem;
     private int maxLife;
     private int playerPos;
+    private BDD_CRUD mydb;
 
-    protected Personnage(String type, String name) {
+    protected Personnage(String type, String name, BDD_CRUD db) {
         this.name = name;
         this.type = type;
+        mydb = db;
     }
 
     public void heals(Potion sousoupe) {
@@ -39,7 +43,7 @@ public abstract class Personnage {
         }
     }
 
-    public GameState fight(Ennemi mechant) {
+    public GameState fight(Ennemi mechant) throws SQLException {
         String fuite = "";
         Scanner clavier = new Scanner(System.in);
         while (!fuite.equals("n") && !fuite.equals("y") && mechant.getLife() > 0 && this.life > 0) {
@@ -56,6 +60,7 @@ public abstract class Personnage {
                     System.out.println("Enemy attacks !");
                     this.life = this.life - mechant.getStrength();
                     System.out.println("new player's life : " + this.life);
+                    mydb.changeLifePoints(this.life);
                     if (this.life <= 0) {
                         System.out.println(Game.ANSI_RED_BACKGROUND + "GAME OVER !" + Game.ANSI_RESET);
                         return GameState.gameover;
@@ -78,7 +83,8 @@ public abstract class Personnage {
     @Override
     public String toString() {
         return "Personnage {" +
-                "type = " + type +
+                "id = " + id +
+                ", type = " + type +
                 ", name = " + name +
                 ", life = " + life +
                 ", strength = " + strength +
@@ -149,5 +155,13 @@ public abstract class Personnage {
 
     public void setPlayerPos(int playerPos) {
         this.playerPos = playerPos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

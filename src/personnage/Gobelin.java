@@ -2,6 +2,8 @@ package personnage;
 
 import main.GameState;
 
+import java.sql.SQLException;
+
 public class Gobelin extends Ennemi {
     public Gobelin() {
         super("Gobelin");
@@ -9,7 +11,7 @@ public class Gobelin extends Ennemi {
         this.setStrength(1);
     }
     @Override
-    public GameState interaction(Personnage player) {
+    public GameState interaction(Personnage player) throws SQLException {
         System.out.print("Gobelin");
         return super.interaction(player);
     }
