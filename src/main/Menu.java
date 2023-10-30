@@ -2,6 +2,7 @@ package main;
 
 import personnage.*;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
@@ -12,7 +13,12 @@ public class Menu {
     private Personnage p1;
     private Personnage savePlayer;
 
-    public void launchMenu() {
+    private BDD_CRUD mydb;
+
+    public Menu(){
+        mydb = new BDD_CRUD();
+    }
+    public void launchMenu() throws SQLException {
         while (!this.exitGame.equals("y")) {
             this.mainMenu();
             if (this.menuChoice == 1) {
@@ -62,7 +68,7 @@ public class Menu {
         }
     }
 
-    public void addNewPlayer() {
+    public void addNewPlayer() throws SQLException {
         System.out.print("Enter type (guerrier/magicien) : ");
         String type = clavier.nextLine();
         System.out.print("Enter name : ");
@@ -73,7 +79,7 @@ public class Menu {
         menuChoice = 0;
     }
 
-    public void modifyPlayer() {
+    public void modifyPlayer() throws SQLException {
         System.out.print("Modify type (guerrier/magicien) : ");
         String type = clavier.nextLine();
         System.out.print("Modify name : ");
@@ -84,12 +90,13 @@ public class Menu {
         menuChoice = 0;
     }
 
-    public void newPlayer(String type, String name) {
+    public void newPlayer(String type, String name) throws SQLException {
         if (type.equals("guerrier")) {
             p1 = new Warrior(type, name);
         } else if (type.equals("magicien")) {
             p1 = new Wizard(type, name);
         }
+        mydb.createHero(p1);
     }
 
     public void resetPlayer(Personnage player) {

@@ -1,8 +1,8 @@
 package equipementDefensif;
 
 public class Philtre extends EquipementDefensif {
-    public Philtre(String name) {
-        super(name);
+    public Philtre() {
+        super("philtre");
         this.setShieldResistance(4);
     }
 

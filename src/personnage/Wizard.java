@@ -1,5 +1,6 @@
 package personnage;
 
+import equipementDefensif.*;
 import equipementOffensif.MainsNues;
 
 public class Wizard extends Personnage {
@@ -10,5 +11,6 @@ public class Wizard extends Personnage {
         this.setMaxLife(6);
         this.setOffensiveItem(new MainsNues());
         this.getOffensiveItem().setWeaponType("sort");
+        this.setDefensiveItem(new Philtre());
     }
 }

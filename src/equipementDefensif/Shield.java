@@ -1,8 +1,8 @@
 package equipementDefensif;
 
 public class Shield extends EquipementDefensif {
-    public Shield(String name) {
-        super(name);
+    public Shield() {
+        super("shield");
         this.setShieldResistance(3);
     }
 

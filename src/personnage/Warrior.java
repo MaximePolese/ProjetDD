@@ -1,5 +1,6 @@
 package personnage;
 
+import equipementDefensif.*;
 import equipementOffensif.MainsNues;
 
 public class Warrior extends Personnage {
@@ -10,6 +11,7 @@ public class Warrior extends Personnage {
         this.setMaxLife(10);
         this.setOffensiveItem(new MainsNues());
         this.getOffensiveItem().setWeaponType("arme");
+        this.setDefensiveItem(new Shield());
     }
 }
 
