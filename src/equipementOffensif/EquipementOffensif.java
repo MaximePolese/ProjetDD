@@ -3,6 +3,8 @@ import main.Case;
 import main.GameState;
 import personnage.Personnage;
 
+import java.sql.SQLException;
+
 public abstract class EquipementOffensif implements Case {
     private String weaponName;
     private int weaponAttack;
@@ -21,7 +23,7 @@ public abstract class EquipementOffensif implements Case {
                 '}';
     }
     @Override
-    public GameState interaction(Personnage player) {
+    public GameState interaction(Personnage player) throws SQLException {
         System.out.println("weapon found");
         player.newItem(this);
         return GameState.continu;

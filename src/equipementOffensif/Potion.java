@@ -3,6 +3,8 @@ package equipementOffensif;
 import main.GameState;
 import personnage.Personnage;
 
+import java.sql.SQLException;
+
 public abstract class Potion extends EquipementOffensif {
     private int health;
 
@@ -23,7 +25,7 @@ public abstract class Potion extends EquipementOffensif {
     }
 
     @Override
-    public GameState interaction(Personnage player) {
+    public GameState interaction(Personnage player) throws SQLException {
         System.out.println(" potion found");
         player.heals(this);
         return GameState.continu;

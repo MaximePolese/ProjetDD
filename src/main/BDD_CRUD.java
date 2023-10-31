@@ -23,20 +23,21 @@ public class BDD_CRUD {
         }
     }
 
-//    public void getHeroes() throws SQLException {
-//        stmt = mydb.createStatement();
-//        rs = stmt.executeQuery("SELECT * FROM hero");
-//        while (rs.next()) {
-//            System.out.println("id : " + rs.getInt(1));
-//            System.out.println("name : " + rs.getString(2));
-//            System.out.println("type : " + rs.getString(3));
-//            System.out.println("life: " + rs.getInt(4));
-//            System.out.println("strength: " + rs.getInt(5));
-//            System.out.println("offensiveItem : " + rs.getString(6));
-//            System.out.println("defensiveItem : " + rs.getString(7));
-//            System.out.println("playerPos: " + rs.getInt(8));
-//        }
-//    }
+    public void getHeroes() throws SQLException {
+        stmt = mydb.createStatement();
+        rs = stmt.executeQuery("SELECT * FROM hero");
+        while (rs.next()) {
+            System.out.print("id : " + rs.getInt(1));
+            System.out.print(", name : " + rs.getString(2));
+            System.out.print(", type : " + rs.getString(3));
+            System.out.print(", life: " + rs.getInt(4));
+            System.out.print(", strength: " + rs.getInt(5));
+            System.out.print(", offensiveItem : " + rs.getString(6));
+            System.out.print(", defensiveItem : " + rs.getString(7));
+            System.out.print(", playerPos: " + rs.getInt(8));
+            System.out.println();
+        }
+    }
 
     public void createHero(Personnage hero) throws SQLException {
         PreparedStatement pstmt = mydb.prepareStatement("INSERT INTO hero (name, type, life, strength, offensiveItem, defensiveItem, playerPos) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -70,12 +71,18 @@ public class BDD_CRUD {
 //        }
 //    }
 
-    public void changeLifePoints(int newLife) throws SQLException {
+        public void changeLifePoints(Personnage hero) throws SQLException {
         stmt = mydb.createStatement();
-        stmt.executeUpdate("UPDATE hero SET life = " + newLife + " WHERE id = " + rs.getInt(1) + " ");
+        stmt.executeUpdate("UPDATE hero SET life = " + hero.getLife() + " WHERE id = " + hero.getId() + " ");
         rs = stmt.executeQuery("SELECT life FROM hero ");
         while (rs.next()) {
             System.out.println("life: " + rs.getInt(4));
         }
     }
+//    public void changeLifePoints(Personnage hero) throws SQLException {
+//        PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET life");
+//        pstmt.setInt(1, hero.getLife());
+//        pstmt.executeUpdate();
+//
+//    }
 }

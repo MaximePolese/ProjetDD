@@ -13,9 +13,11 @@ public class Game {
     private Scanner keyboard = new Scanner(System.in);
     private int pauseChoice = 0;
     public GameState result = GameState.continu;
+    private BDD_CRUD mydb;
 
-    public Game(Personnage player) {
+    public Game(Personnage player, BDD_CRUD db) {
 //      this.manualInitBoard();
+        mydb = db;
         this.randomInitBoard();
         System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
         this.initPlayer(player);
@@ -153,7 +155,8 @@ public class Game {
         }
     }
 
-    public void playerStatus(Personnage player) {
+    public void playerStatus(Personnage player) throws SQLException {
+        mydb.getHeroes();
         System.out.println(ANSI_GREEN + player + ANSI_RESET);
         pauseChoice = 0;
     }
