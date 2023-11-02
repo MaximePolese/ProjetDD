@@ -22,7 +22,7 @@ public class Menu {
         while (!this.exitGame.equals("y")) {
             this.mainMenu();
             if (this.menuChoice == 1) {
-                this.addNewPlayer();
+                this.createNewPlayer();
             } else if (this.menuChoice == 2) {
                 if (this.p1 == null) {
                     System.out.println("First, you have to create new player ! back to menu ......");
@@ -68,7 +68,7 @@ public class Menu {
         }
     }
 
-    public void addNewPlayer() throws SQLException {
+    public void createNewPlayer() throws SQLException {
         System.out.print("Enter type (guerrier/magicien) : ");
         String type = clavier.nextLine();
         System.out.print("Enter name : ");
