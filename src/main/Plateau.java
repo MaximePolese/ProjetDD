@@ -33,10 +33,8 @@ public class Plateau {
         smallPotion = 0;
         bigPotion = 0;
         caseVide = 0;
-        int random;
-        caseRemplie = false;
-
         this.randomInitBoard();
+        this.initPlayer();
     }
 
     public void randomInitBoard() {
@@ -91,8 +89,9 @@ public class Plateau {
             System.out.println(Game.ANSI_BLUE + i + " " + board.get(i));
         }
     }
+
     public void initPlayer() {
         playerPos = 0;
-        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
+        System.out.println("Player en position : " + (playerPos + 1));
     }
 }
