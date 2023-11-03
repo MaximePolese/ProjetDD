@@ -1,14 +1,17 @@
 package main;
 
 public class De {
-    private int dice;
+    private int diceResult;
 
     public De() {
-
     }
 
     public void lancerDe() {
-        dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
-        System.out.println("Dice result : " + dice);
+        diceResult = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
+        System.out.println("Dice result : " + diceResult);
+    }
+
+    public int getDiceResult() {
+        return diceResult;
     }
 }

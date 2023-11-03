@@ -6,7 +6,7 @@ import personnage.*;
 import java.util.ArrayList;
 
 public class Plateau {
-    private ArrayList<Case> board;
+    private ArrayList<Case> initBoard;
     int dragon;
     int sorcier;
     int gobelin;
@@ -22,7 +22,7 @@ public class Plateau {
     private int playerPos;
 
     public Plateau() {
-        board = new ArrayList<Case>();
+        initBoard = new ArrayList<Case>();
         dragon = 0;
         sorcier = 0;
         gobelin = 0;
@@ -38,60 +38,76 @@ public class Plateau {
     }
 
     public void randomInitBoard() {
-        board.add(new CaseVide());
-        System.out.println(Game.ANSI_BLUE + "0 " + board.get(0));
+        initBoard.add(new CaseVide());
+        System.out.println(Game.ANSI_BLUE + "0 " + initBoard.get(0));
         for (int i = 1; i < 64; i++) {
             caseRemplie = false;
             while (!caseRemplie) {
                 random = (int) Math.floor(Math.random() * (10 - 1 + 1) + 1);
                 if (random == 1 && dragon < 4) {
-                    board.add(new Dragon());
+                    initBoard.add(new Dragon());
                     dragon++;
                     caseRemplie = true;
                 } else if (random == 2 && sorcier < 10) {
-                    board.add(new Sorcier());
+                    initBoard.add(new Sorcier());
                     sorcier++;
                     caseRemplie = true;
                 } else if (random == 3 && gobelin < 10) {
-                    board.add(new Gobelin());
+                    initBoard.add(new Gobelin());
                     gobelin++;
                     caseRemplie = true;
                 } else if (random == 4 && massue < 5) {
-                    board.add(new Massue());
+                    initBoard.add(new Massue());
                     massue++;
                     caseRemplie = true;
                 } else if (random == 5 && epee < 4) {
-                    board.add(new Epee());
+                    initBoard.add(new Epee());
                     epee++;
                     caseRemplie = true;
                 } else if (random == 6 && eclair < 5) {
-                    board.add(new Eclair());
+                    initBoard.add(new Eclair());
                     eclair++;
                     caseRemplie = true;
                 } else if (random == 7 && bouleDeFeu < 2) {
-                    board.add(new BouleDeFeu());
+                    initBoard.add(new BouleDeFeu());
                     bouleDeFeu++;
                     caseRemplie = true;
                 } else if (random == 8 && smallPotion < 6) {
-                    board.add(new SmallPotion());
+                    initBoard.add(new SmallPotion());
                     smallPotion++;
                     caseRemplie = true;
                 } else if (random == 9 && bigPotion < 2) {
-                    board.add(new BigPotion());
+                    initBoard.add(new BigPotion());
                     bigPotion++;
                     caseRemplie = true;
                 } else if (random == 10 && caseVide < 16) {
-                    board.add(new CaseVide());
+                    initBoard.add(new CaseVide());
                     caseVide++;
                     caseRemplie = true;
                 }
             }
-            System.out.println(Game.ANSI_BLUE + i + " " + board.get(i));
+            System.out.println(Game.ANSI_BLUE + i + " " + initBoard.get(i));
         }
     }
 
     public void initPlayer() {
         playerPos = 0;
         System.out.println("Player en position : " + (playerPos + 1));
+    }
+
+    public int getPlayerPos() {
+        return playerPos;
+    }
+
+    public void setPlayerPos(int playerPos) {
+        this.playerPos = playerPos;
+    }
+
+    public ArrayList<Case> getInitBoard() {
+        return initBoard;
+    }
+
+    public void setInitBoard(ArrayList<Case> initBoard) {
+        this.initBoard = initBoard;
     }
 }

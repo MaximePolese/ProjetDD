@@ -1,38 +1,34 @@
 package main;
 
 import personnage.*;
-import equipementOffensif.*;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Game {
-    private Scanner keyboard = new Scanner(System.in);
-    private int pauseChoice = 0;
-    public GameState result = GameState.continu;
+    private Scanner keyboard;
     private BDD_CRUD mydb;
+    private Plateau board;
+    private De dice;
+    public GameState result;
+    private int pauseChoice;
 
     public Game(Personnage player, BDD_CRUD db) {
+        keyboard = new Scanner(System.in);
         mydb = db;
-        this.randomInitBoard();
-        System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
-        this.initPlayer(player);
+        board = new Plateau();
+        dice = new De();
+        result = GameState.continu;
+        pauseChoice = 0;
         try {
             result = this.playGame(player);
         } catch (PersonnageHorsPlateauException | SQLException e1) {
             System.out.println(e1.getMessage());
         }
     }
-    public void movePlayer(Personnage player) throws PersonnageHorsPlateauException {
-        player.setPlayerPos(player.getPlayerPos() + dice);
-        if (player.getPlayerPos() >= 63) {
-            throw new PersonnageHorsPlateauException(player);
-        }
-        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
-    }
 
     public GameState playGame(Personnage player) throws PersonnageHorsPlateauException, SQLException {
-        while (player.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
+        while (board.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {
                 while (this.pauseChoice == 0) {
@@ -47,15 +43,36 @@ public class Game {
                 }
                 pauseChoice = 0;
             } else {
-                this.lancerDe();
+                dice.lancerDe();
                 this.movePlayer(player);
-                result = board.get(player.getPlayerPos()).interaction(player);
+                result = board.getPlayerPos().interaction(player);
                 if (result == GameState.enemyDies) {
-                    this.deleteEnemy(player);
+                    this.deleteEnemy();
                 }
             }
         }
         return GameState.continu;
+    }
+
+    public void movePlayer(Personnage player) throws PersonnageHorsPlateauException {
+        board.setPlayerPos(board.getPlayerPos() + dice.getDiceResult());
+        if (board.getPlayerPos() >= 63) {
+            throw new PersonnageHorsPlateauException(player);
+        }
+        System.out.println("Player en position : " + (board.getPlayerPos() + 1));
+    }
+
+    public void fuite(Personnage player) {
+        dice.lancerDe();
+        board.setPlayerPos(board.getPlayerPos() - dice.getDiceResult());
+        if (board.getPlayerPos() < 0) {
+            board.setPlayerPos(0);
+        }
+        System.out.println("Player en position : " + (board.getPlayerPos() + 1));
+    }
+
+    public void deleteEnemy() {
+        board.setInitBoard(board.getPlayerPos(), new CaseVide());
     }
 
     public void pauseMenu() {
@@ -81,10 +98,6 @@ public class Game {
 
     public void resumeGame() {
         System.out.println("LET'S GO !");
-    }
-
-    public void deleteEnemy(Personnage player) {
-        board.set(player.getPlayerPos(), new CaseVide());
     }
 
     public static final String ANSI_RESET = "\u001B[0m";

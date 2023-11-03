@@ -1,8 +1,7 @@
 package personnage;
 
-import equipementDefensif.EquipementDefensif;
-import equipementOffensif.EquipementOffensif;
-import equipementOffensif.Potion;
+import equipementDefensif.*;
+import equipementOffensif.*;
 import main.*;
 
 import java.sql.SQLException;
@@ -208,14 +207,6 @@ public abstract class Personnage {
 
     public void setMaxLife(int maxLife) {
         this.maxLife = maxLife;
-    }
-
-    public int getPlayerPos() {
-        return playerPos;
-    }
-
-    public void setPlayerPos(int playerPos) {
-        this.playerPos = playerPos;
     }
 
     public int getId() {

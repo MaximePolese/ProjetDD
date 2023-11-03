@@ -11,10 +11,10 @@ public class BigPotion extends Potion {
         super("Big potion");
         this.setHealth(5);
     }
+
     @Override
     public GameState interaction(Personnage player) throws SQLException {
         System.out.print("Big");
-        super.interaction(player);
-        return GameState.continu;
+        return super.interaction(player);
     }
 }

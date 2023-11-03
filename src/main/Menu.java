@@ -121,6 +121,7 @@ public class Menu {
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
             Game newGame = new Game(savePlayer, mydb);
+            System.out.println(Game.ANSI_RED + "Write pause anytime to access pause menu" + Game.ANSI_RESET);
             if (newGame.result == GameState.exit) {
                 menuChoice = 0;
             }
