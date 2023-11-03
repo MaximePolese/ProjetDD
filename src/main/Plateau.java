@@ -95,6 +95,10 @@ public class Plateau {
         System.out.println("Player en position : " + (playerPos + 1));
     }
 
+    public void deleteEnemy() {
+        initBoard.set(playerPos, new CaseVide());
+    }
+
     public int getPlayerPos() {
         return playerPos;
     }

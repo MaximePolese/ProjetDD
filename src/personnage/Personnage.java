@@ -19,7 +19,6 @@ public abstract class Personnage {
     private EquipementOffensif offensiveItem;
     private EquipementDefensif defensiveItem;
     private int maxLife;
-    private BDD_CRUD mydb;
 
     /**
      * Constructeur de personnage
@@ -28,10 +27,9 @@ public abstract class Personnage {
      * @param name le nom du joueur
      * @param db   pour interagir avec la base de donnée
      */
-    protected Personnage(String type, String name, BDD_CRUD db) {
+    protected Personnage(String type, String name) {
         this.name = name;
         this.type = type;
-        mydb = db;
     }
 
     /**

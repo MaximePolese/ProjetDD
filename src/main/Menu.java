@@ -7,12 +7,13 @@ import java.util.Scanner;
 
 public class Menu {
     private Scanner clavier;
+    private BDD_CRUD mydb;
     private int menuChoice;
     private String startGame;
     private String exitGame;
     private Personnage p1;
     private Personnage savePlayer;
-    private BDD_CRUD mydb;
+    private Game newGame;
 
     public Menu() {
         clavier = new Scanner(System.in);
@@ -82,6 +83,15 @@ public class Menu {
         menuChoice = 0;
     }
 
+    public void newPlayer(String type, String name) throws SQLException {
+        if (type.equals("guerrier")) {
+            p1 = new Warrior(type, name);
+        } else if (type.equals("magicien")) {
+            p1 = new Wizard(type, name);
+        }
+        mydb.createHero(p1);
+    }
+
     public void modifyPlayer() throws SQLException {
         System.out.print("Modify type (guerrier/magicien) : ");
         String type = clavier.nextLine();
@@ -93,20 +103,11 @@ public class Menu {
         menuChoice = 0;
     }
 
-    public void newPlayer(String type, String name) throws SQLException {
-        if (type.equals("guerrier")) {
-            p1 = new Warrior(type, name, mydb);
-        } else if (type.equals("magicien")) {
-            p1 = new Wizard(type, name, mydb);
-        }
-        mydb.createHero(p1);
-    }
-
     public void resetPlayer(Personnage player) {
         if (player instanceof Warrior guerrier) {
-            savePlayer = new Warrior(guerrier.getType(), guerrier.getName(), mydb);
+            savePlayer = new Warrior(guerrier.getType(), guerrier.getName());
         } else if (player instanceof Wizard magicien) {
-            savePlayer = new Wizard(magicien.getType(), magicien.getName(), mydb);
+            savePlayer = new Wizard(magicien.getType(), magicien.getName());
         }
     }
 
@@ -115,13 +116,18 @@ public class Menu {
         startGame = clavier.nextLine();
         if (this.startGame.equals("y")) {
             if (this.p1 == null) {
-                p1 = new Warrior("guerrier", "player 1", mydb);
+                p1 = new Warrior("guerrier", "player 1");
                 mydb.createHero(p1);
             }
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
-            Game newGame = new Game(savePlayer, mydb);
+            newGame = new Game(mydb);
             System.out.println(Game.ANSI_RED + "Write pause anytime to access pause menu" + Game.ANSI_RESET);
+            try {
+                newGame.result = newGame.playGame(savePlayer);
+            } catch (PersonnageHorsPlateauException | SQLException e1) {
+                System.out.println(e1.getMessage());
+            }
             if (newGame.result == GameState.exit) {
                 menuChoice = 0;
             }
