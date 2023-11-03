@@ -20,7 +20,6 @@ public abstract class Personnage {
     private EquipementOffensif offensiveItem;
     private EquipementDefensif defensiveItem;
     private int maxLife;
-    private int playerPos;
     private BDD_CRUD mydb;
 
     /**

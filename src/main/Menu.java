@@ -6,16 +6,19 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
-    private Scanner clavier = new Scanner(System.in);
-    private int menuChoice = 0;
+    private Scanner clavier;
+    private int menuChoice;
     private String startGame;
-    private String exitGame = "n";
+    private String exitGame;
     private Personnage p1;
     private Personnage savePlayer;
     private BDD_CRUD mydb;
 
     public Menu() {
+        clavier = new Scanner(System.in);
         mydb = new BDD_CRUD();
+        menuChoice = 0;
+        exitGame = "n";
     }
 
     public void launchMenu() throws SQLException {
