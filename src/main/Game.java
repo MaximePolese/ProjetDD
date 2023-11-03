@@ -10,7 +10,7 @@ public class Game {
     private Plateau board;
     private De dice;
     private PauseMenu pauseMenu;
-    public GameState result;
+    private GameState result;
 
     public Game(BDD_CRUD db) {
         keyboard = new Scanner(System.in);
@@ -21,10 +21,11 @@ public class Game {
     }
 
     public GameState playGame(Personnage player) throws PersonnageHorsPlateauException, SQLException {
+        System.out.println("Player en position : " + (board.getPlayerPos() + 1));
         while (board.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {
-                pauseMenu.launchPauseMenu(player);
+                return pauseMenu.launchPauseMenu(player);
             } else {
                 this.movePlayer(player);
                 result = board.getInitBoard().get(board.getPlayerPos()).interaction(player);
@@ -53,6 +54,15 @@ public class Game {
         }
         System.out.println("Player en position : " + (board.getPlayerPos() + 1));
     }
+
+    public GameState getResult() {
+        return result;
+    }
+
+    public void setResult(GameState result) {
+        this.result = result;
+    }
+
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";

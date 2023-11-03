@@ -89,7 +89,6 @@ public class Menu {
         } else if (type.equals("magicien")) {
             p1 = new Wizard(type, name);
         }
-        mydb.createHero(p1);
     }
 
     public void modifyPlayer() throws SQLException {
@@ -103,12 +102,13 @@ public class Menu {
         menuChoice = 0;
     }
 
-    public void resetPlayer(Personnage player) {
+    public void resetPlayer(Personnage player) throws SQLException {
         if (player instanceof Warrior guerrier) {
             savePlayer = new Warrior(guerrier.getType(), guerrier.getName());
         } else if (player instanceof Wizard magicien) {
             savePlayer = new Wizard(magicien.getType(), magicien.getName());
         }
+        mydb.createHero(savePlayer);
     }
 
     public void startNewGame() throws SQLException {
@@ -117,18 +117,17 @@ public class Menu {
         if (this.startGame.equals("y")) {
             if (this.p1 == null) {
                 p1 = new Warrior("guerrier", "player 1");
-                mydb.createHero(p1);
             }
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
             newGame = new Game(mydb);
             System.out.println(Game.ANSI_RED + "Write pause anytime to access pause menu" + Game.ANSI_RESET);
             try {
-                newGame.result = newGame.playGame(savePlayer);
+                newGame.setResult(newGame.playGame(savePlayer));
             } catch (PersonnageHorsPlateauException | SQLException e1) {
                 System.out.println(e1.getMessage());
             }
-            if (newGame.result == GameState.exit) {
+            if (newGame.getResult() == GameState.exit) {
                 menuChoice = 0;
             }
         } else if (this.startGame.equals("n")) {

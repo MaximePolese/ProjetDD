@@ -119,10 +119,10 @@ public abstract class Personnage {
 //                    mydb.changeLifePoints(this);
     }
 
-    /**
-     * Le personnage s'enfuit d'un combat,
-     * il recule du résultat du dé
-     */
+//    /**
+//     * Le personnage s'enfuit d'un combat,
+//     * il recule du résultat du dé
+//     */
 //    public void fuite() {
 //        int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
 //        System.out.println("Dice result : " + dice);

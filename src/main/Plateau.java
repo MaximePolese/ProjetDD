@@ -34,7 +34,7 @@ public class Plateau {
         bigPotion = 0;
         caseVide = 0;
         this.randomInitBoard();
-        this.initPlayer();
+        playerPos = 0;
     }
 
     public void randomInitBoard() {
@@ -86,13 +86,8 @@ public class Plateau {
                     caseRemplie = true;
                 }
             }
-            System.out.println(Game.ANSI_BLUE + i + " " + initBoard.get(i));
+            System.out.println(Game.ANSI_BLUE + i + " " + initBoard.get(i) + Game.ANSI_RESET);
         }
-    }
-
-    public void initPlayer() {
-        playerPos = 0;
-        System.out.println("Player en position : " + (playerPos + 1));
     }
 
     public void deleteEnemy() {
