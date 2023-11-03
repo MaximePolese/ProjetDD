@@ -110,8 +110,4 @@ public class Plateau {
     public ArrayList<Case> getInitBoard() {
         return initBoard;
     }
-
-    public void setInitBoard(ArrayList<Case> initBoard) {
-        this.initBoard = initBoard;
-    }
 }

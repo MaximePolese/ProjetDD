@@ -27,7 +27,7 @@ public class Game {
                 pauseMenu.launchPauseMenu(player);
             } else {
                 this.movePlayer(player);
-                result = board.getInitBoard(board.getPlayerPos().interaction(player));
+                result = board.getInitBoard().get(board.getPlayerPos()).interaction(player);
                 if (result == GameState.enemyDies) {
                     board.deleteEnemy();
                 }

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public abstract class Ennemi extends Personnage implements Case {
     protected Ennemi(String name) {
-        super("ennemi", name, null);
+        super("ennemi", name);
     }
 
     @Override

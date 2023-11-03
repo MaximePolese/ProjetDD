@@ -25,7 +25,6 @@ public abstract class Personnage {
      *
      * @param type le type de personnage : guerrier ou magicien
      * @param name le nom du joueur
-     * @param db   pour interagir avec la base de donnée
      */
     protected Personnage(String type, String name) {
         this.name = name;
@@ -89,7 +88,8 @@ public abstract class Personnage {
                 }
                 fuite = "";
             } else if (fuite.equals("y")) {
-                this.fuite();
+                System.out.println("fuite");
+//                this.fuite();
             }
         }
         return GameState.continu;
@@ -123,15 +123,15 @@ public abstract class Personnage {
      * Le personnage s'enfuit d'un combat,
      * il recule du résultat du dé
      */
-    public void fuite() {
-        int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
-        System.out.println("Dice result : " + dice);
-        this.playerPos = this.playerPos - dice;
-        if (this.playerPos < 0) {
-            this.playerPos = 0;
-        }
-        System.out.println("Player en position : " + (this.playerPos + 1));
-    }
+//    public void fuite() {
+//        int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
+//        System.out.println("Dice result : " + dice);
+//        this.playerPos = this.playerPos - dice;
+//        if (this.playerPos < 0) {
+//            this.playerPos = 0;
+//        }
+//        System.out.println("Player en position : " + (this.playerPos + 1));
+//    }
 
     /**
      * Pour afficher les caractéristiques du personnage
@@ -197,10 +197,6 @@ public abstract class Personnage {
 
     public void setDefensiveItem(EquipementDefensif defensiveItem) {
         this.defensiveItem = defensiveItem;
-    }
-
-    public int getMaxLife() {
-        return maxLife;
     }
 
     public void setMaxLife(int maxLife) {
