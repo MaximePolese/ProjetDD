@@ -12,7 +12,7 @@ public class Game {
     private PauseMenu pauseMenu;
     private GameState result;
 
-    public Game(BDD_CRUD db, Personnage player) {
+    public Game(BDD_CRUD db) {
         keyboard = new Scanner(System.in);
         board = new Plateau();
         dice = new De();
