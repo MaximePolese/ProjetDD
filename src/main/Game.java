@@ -23,7 +23,6 @@ public class Game {
     }
 
     public GameState playGame(Personnage player) throws PersonnageHorsPlateauException, SQLException {
-
         while (player.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {

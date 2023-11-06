@@ -77,6 +77,7 @@ public class Menu {
         System.out.print("Enter name : ");
         String name = clavier.nextLine();
         newPlayer(type, name);
+        mydb.createHero(p1);
         System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
         System.out.println("Your player is created ! back to menu ......");
         menuChoice = 0;
@@ -96,6 +97,7 @@ public class Menu {
         System.out.print("Modify name : ");
         String name = clavier.nextLine();
         newPlayer(type, name);
+        mydb.updatePlayer(p1);
         System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
         System.out.println("Your player is modified! back to menu ......");
         menuChoice = 0;
@@ -119,10 +121,11 @@ public class Menu {
         if (this.startGame.equals("y")) {
             if (this.p1 == null) {
                 p1 = new Warrior("guerrier", "player 1");
-            }
-            if (p1.getId() == 0) {
                 mydb.createHero(p1);
             }
+//            if (p1.getId() == 0) {
+//                mydb.createHero(p1);
+//            }
             System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
             newGame = new Game(mydb, p1);
             while (newGame.getResult() == GameState.continu) {

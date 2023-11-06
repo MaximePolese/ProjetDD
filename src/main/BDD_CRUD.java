@@ -56,28 +56,13 @@ public class BDD_CRUD {
     }
 
     public void updatePlayer(Personnage hero) throws SQLException {
-        PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET life = ?, offensiveItem = ?, playerPos = ? WHERE id = ?");
+        PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET life = ?, strength = ?, offensiveItem = ?, defensiveItem = ?, playerPos = ? WHERE id = ?");
         pstmt.setInt(1, hero.getLife());
-        pstmt.setString(2, hero.getOffensiveItem().getWeaponName());
-        pstmt.setInt(3, hero.getPlayerPos());
-        pstmt.setInt(4, hero.getId());
+        pstmt.setInt(2, hero.getStrength());
+        pstmt.setString(3, hero.getOffensiveItem().getWeaponName());
+        pstmt.setString(4, hero.getDefensiveItem().getShieldName());
+        pstmt.setInt(5, hero.getPlayerPos());
+        pstmt.setInt(6, hero.getId());
         pstmt.executeUpdate();
     }
-
-//    public void editHero(Personnage hero) throws SQLException {
-//        stmt = mydb.createStatement();
-//        stmt.executeUpdate("UPDATE hero SET type = " + hero.getType() + " WHERE id = " + rs.getInt(1) + " ");
-//        rs = stmt.executeQuery("SELECT id, name, type, life, strength, offensiveItem, defensiveItem, playerPos FROM id = rs.getInt(1)");
-//        while (rs.next()) {
-//            System.out.println("id : " + rs.getInt(1));
-//            System.out.println("name : " + rs.getString(2));
-//            System.out.println("type : " + rs.getString(3));
-//            System.out.println("life: " + rs.getInt(4));
-//            System.out.println("strength: " + rs.getInt(5));
-//            System.out.println("offensiveItem : " + rs.getString(6));
-//            System.out.println("defensiveItem : " + rs.getString(7));
-//            System.out.println("playerPos: " + rs.getInt(8));
-//        }
-//    }
-
 }
