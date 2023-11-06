@@ -12,7 +12,7 @@ public class Game {
     private PauseMenu pauseMenu;
     private GameState result;
 
-    public Game(BDD_CRUD db) {
+    public Game(BDD_CRUD db, Personnage player) {
         keyboard = new Scanner(System.in);
         board = new Plateau();
         dice = new De();
@@ -21,6 +21,7 @@ public class Game {
     }
 
     public GameState playGame(Personnage player) throws PersonnageHorsPlateauException, SQLException {
+        System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
         System.out.println("Player en position : " + (board.getPlayerPos() + 1));
         while (board.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
@@ -46,7 +47,7 @@ public class Game {
         System.out.println("Player en position : " + (board.getPlayerPos() + 1));
     }
 
-    public void fuite(Personnage player) {
+    public void fuite() {
         dice.lancerDe();
         board.setPlayerPos(board.getPlayerPos() - dice.getDiceResult());
         if (board.getPlayerPos() < 0) {
@@ -62,7 +63,6 @@ public class Game {
     public void setResult(GameState result) {
         this.result = result;
     }
-
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";

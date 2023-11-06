@@ -120,12 +120,13 @@ public class Menu {
             }
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
-            newGame = new Game(mydb);
-            System.out.println(Game.ANSI_RED + "Write pause anytime to access pause menu" + Game.ANSI_RESET);
-            try {
-                newGame.setResult(newGame.playGame(savePlayer));
-            } catch (PersonnageHorsPlateauException | SQLException e1) {
-                System.out.println(e1.getMessage());
+            newGame = new Game(mydb, savePlayer);
+            while (newGame.getResult() == GameState.continu) {
+                try {
+                    newGame.setResult(newGame.playGame(savePlayer));
+                } catch (PersonnageHorsPlateauException | SQLException e1) {
+                    System.out.println(e1.getMessage());
+                }
             }
             if (newGame.getResult() == GameState.exit) {
                 menuChoice = 0;

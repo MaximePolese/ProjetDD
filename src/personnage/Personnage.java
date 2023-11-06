@@ -4,8 +4,9 @@ import equipementDefensif.*;
 import equipementOffensif.*;
 import main.*;
 
-import java.sql.SQLException;
 import java.util.Scanner;
+
+import java.sql.SQLException;
 
 /**
  * Classe représentant un personnage
@@ -89,7 +90,7 @@ public abstract class Personnage {
                 fuite = "";
             } else if (fuite.equals("y")) {
                 System.out.println("fuite");
-//                this.fuite();
+//                Game.fuite();
             }
         }
         return GameState.continu;
@@ -118,14 +119,14 @@ public abstract class Personnage {
         System.out.println("new player's life : " + this.life);
 //                    mydb.changeLifePoints(this);
     }
-
+//
 //    /**
 //     * Le personnage s'enfuit d'un combat,
 //     * il recule du résultat du dé
 //     */
 //    public void fuite() {
-//        int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
-//        System.out.println("Dice result : " + dice);
+//        Game.getDice().lancerDe();
+//
 //        this.playerPos = this.playerPos - dice;
 //        if (this.playerPos < 0) {
 //            this.playerPos = 0;

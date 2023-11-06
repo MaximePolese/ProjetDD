@@ -3,119 +3,116 @@
   <ID>JAVA</ID>
   <OriginalElement>C:/Users/maxime.polese/IdeaProjects/ProjetDD/src</OriginalElement>
   <nodes>
-    <node x="930.125" y="754.0">main.Game</node>
-    <node x="383.53125" y="-14.0">equipementDefensif.EquipementDefensif</node>
-    <node x="65.90625" y="-14.0">equipementOffensif.EquipementOffensif</node>
-    <node x="252.23295454545462" y="1272.0">main.Main</node>
-    <node x="713.625" y="425.0">equipementDefensif.Shield</node>
-    <node x="-156.0" y="256.0">personnage.Personnage</node>
-    <node x="378.03125" y="814.5">personnage.Warrior</node>
-    <node x="216.73295454545462" y="990.0">main.Menu</node>
-    <node x="141.00000000000006" y="425.0">equipementOffensif.Spell</node>
-    <node x="890.625" y="437.5">main.PersonnageHorsPlateauException</node>
-    <node x="331.00000000000006" y="425.0">equipementOffensif.Weapon</node>
-    <node x="172.03125" y="814.5">personnage.Wizard</node>
+    <node x="430.6111111111111" y="887.0">personnage.Wizard</node>
+    <node x="-111.0" y="826.0">main.Game</node>
+    <node x="267.9826388888889" y="10.0">equipementDefensif.EquipementDefensif</node>
+    <node x="-156.0" y="504.0">main.PersonnageHorsPlateauException</node>
+    <node x="386.72916666666674" y="1370.0">main.Main</node>
+    <node x="351.2291666666667" y="1063.0">main.Menu</node>
+    <node x="814.0" y="504.0">equipementOffensif.Spell</node>
+    <node x="221.6111111111112" y="887.0">personnage.Warrior</node>
+    <node x="644.0" y="504.0">equipementOffensif.Weapon</node>
+    <node x="355.00000000000006" y="297.0">personnage.Personnage</node>
+    <node x="178.00000000000006" y="491.0">equipementDefensif.Shield</node>
+    <node x="584.8576388888889" y="-14.0">equipementOffensif.EquipementOffensif</node>
   </nodes>
   <notes />
   <edges>
     <edge source="personnage.Personnage" target="equipementDefensif.EquipementDefensif" relationship="TO_ONE">
-      <point x="0.0" y="-213.0" />
-      <point x="-21.499999999999943" y="226.0" />
-      <point x="440.28125" y="226.0" />
-      <point x="-56.75" y="105.0" />
+      <point x="-5.6843418860808015E-14" y="-238.5" />
+      <point x="489.5" y="277.0" />
+      <point x="438.2326388888889" y="277.0" />
+      <point x="56.75" y="106.5" />
     </edge>
     <edge source="personnage.Wizard" target="personnage.Personnage" relationship="GENERALIZATION">
-      <point x="-46.5" y="-31.5" />
-      <point x="218.53125" y="723.0" />
-      <point x="7.000000000000057" y="723.0" />
-      <point x="7.000000000000057" y="713.0" />
-      <point x="45.75" y="713.0" />
-      <point x="67.25" y="213.0" />
+      <point x="0.0" y="-31.5" />
+      <point x="523.6111111111111" y="805.0" />
+      <point x="446.2326388888889" y="805.0" />
+      <point x="446.2326388888889" y="795.0" />
+      <point x="422.25" y="795.0" />
+      <point x="-67.25" y="238.5" />
     </edge>
     <edge source="equipementDefensif.Shield" target="equipementDefensif.EquipementDefensif" relationship="GENERALIZATION">
-      <point x="0.0" y="-44.0" />
-      <point x="792.125" y="236.0" />
-      <point x="698.53125" y="236.0" />
-      <point x="698.53125" y="226.0" />
-      <point x="553.78125" y="226.0" />
-      <point x="56.75" y="105.0" />
+      <point x="0.0" y="-44.5" />
+      <point x="256.50000000000006" y="277.0" />
+      <point x="324.7326388888889" y="277.0" />
+      <point x="-56.75" y="106.5" />
     </edge>
     <edge source="main.Menu" target="personnage.Wizard" relationship="CREATE">
-      <point x="58.75" y="-116.0" />
-      <point x="392.9829545454546" y="969.0" />
-      <point x="487.375" y="969.0" />
-      <point x="487.375" y="959.0" />
-      <point x="265.03125" y="959.0" />
+      <point x="-58.75" y="-128.5" />
+      <point x="409.97916666666674" y="1042.0" />
+      <point x="316.1111111111112" y="1042.0" />
+      <point x="316.1111111111112" y="1032.0" />
+      <point x="523.6111111111111" y="1032.0" />
       <point x="0.0" y="31.5" />
     </edge>
     <edge source="main.Menu" target="personnage.Personnage" relationship="TO_ONE">
-      <point x="-58.75" y="-116.0" />
-      <point x="275.4829545454546" y="969.0" />
-      <point x="-26.749999999999943" y="969.0" />
-      <point x="-26.749999999999943" y="733.0" />
-      <point x="-88.75" y="733.0" />
-      <point x="-67.25" y="213.0" />
+      <point x="58.75" y="-128.5" />
+      <point x="527.4791666666667" y="1042.0" />
+      <point x="627.1111111111111" y="1042.0" />
+      <point x="627.1111111111111" y="805.0" />
+      <point x="556.75" y="805.0" />
+      <point x="67.24999999999994" y="238.5" />
     </edge>
     <edge source="equipementOffensif.Weapon" target="equipementOffensif.EquipementOffensif" relationship="GENERALIZATION">
-      <point x="0.0" y="-44.0" />
-      <point x="416.0" y="236.0" />
-      <point x="321.00000000000006" y="236.0" />
-      <point x="321.00000000000006" y="216.0" />
-      <point x="234.65625" y="216.0" />
-      <point x="56.25" y="105.0" />
+      <point x="0.0" y="-31.5" />
+      <point x="719.0" y="277.0" />
+      <point x="807.2326388888889" y="277.0" />
+      <point x="807.2326388888889" y="267.0" />
+      <point x="757.3576388888889" y="267.0" />
+      <point x="57.5" y="130.5" />
     </edge>
     <edge source="personnage.Warrior" target="personnage.Personnage" relationship="GENERALIZATION">
-      <point x="-47.25" y="-31.5" />
-      <point x="425.28125" y="723.0" />
-      <point x="7.000000000000057" y="723.0" />
-      <point x="7.000000000000057" y="713.0" />
-      <point x="45.75" y="713.0" />
-      <point x="67.25" y="213.0" />
+      <point x="0.0" y="-31.5" />
+      <point x="316.1111111111112" y="805.0" />
+      <point x="446.2326388888889" y="805.0" />
+      <point x="446.2326388888889" y="795.0" />
+      <point x="422.25" y="795.0" />
+      <point x="-67.25" y="238.5" />
     </edge>
     <edge source="equipementOffensif.Spell" target="equipementOffensif.EquipementOffensif" relationship="GENERALIZATION">
-      <point x="0.0" y="-44.0" />
-      <point x="226.00000000000006" y="236.0" />
-      <point x="321.00000000000006" y="236.0" />
-      <point x="321.00000000000006" y="216.0" />
-      <point x="234.65625" y="216.0" />
-      <point x="56.25" y="105.0" />
+      <point x="0.0" y="-31.5" />
+      <point x="878.5" y="277.0" />
+      <point x="807.2326388888889" y="277.0" />
+      <point x="807.2326388888889" y="267.0" />
+      <point x="757.3576388888889" y="267.0" />
+      <point x="57.5" y="130.5" />
     </edge>
     <edge source="personnage.Personnage" target="equipementOffensif.EquipementOffensif" relationship="TO_ONE">
-      <point x="0.0" y="-213.0" />
-      <point x="-21.499999999999943" y="226.0" />
-      <point x="122.15625" y="226.0" />
-      <point x="-56.25" y="105.0" />
+      <point x="-5.6843418860808015E-14" y="-238.5" />
+      <point x="489.5" y="277.0" />
+      <point x="642.3576388888889" y="277.0" />
+      <point x="-57.5" y="130.5" />
     </edge>
     <edge source="main.Menu" target="main.Game" relationship="CREATE">
-      <point x="58.75" y="-116.0" />
-      <point x="392.9829545454546" y="969.0" />
-      <point x="487.375" y="969.0" />
-      <point x="487.375" y="959.0" />
-      <point x="1047.625" y="959.0" />
-      <point x="0.0" y="92.0" />
+      <point x="-58.75" y="-128.5" />
+      <point x="409.97916666666674" y="1042.0" />
+      <point x="316.1111111111112" y="1042.0" />
+      <point x="316.1111111111112" y="1032.0" />
+      <point x="1.0" y="1032.0" />
+      <point x="0.0" y="92.5" />
     </edge>
     <edge source="main.Menu" target="personnage.Warrior" relationship="CREATE">
-      <point x="58.75" y="-116.0" />
-      <point x="392.9829545454546" y="969.0" />
-      <point x="487.375" y="969.0" />
-      <point x="487.375" y="959.0" />
-      <point x="472.53125" y="959.0" />
+      <point x="-58.75" y="-128.5" />
+      <point x="409.97916666666674" y="1042.0" />
+      <point x="316.1111111111112" y="1042.0" />
       <point x="0.0" y="31.5" />
     </edge>
     <edge source="main.Game" target="main.PersonnageHorsPlateauException" relationship="CREATE">
-      <point x="0.0" y="-92.0" />
+      <point x="0.0" y="-92.5" />
       <point x="0.0" y="31.5" />
     </edge>
     <edge source="main.Main" target="main.Menu" relationship="CREATE">
-      <point x="0.0" y="-44.0" />
-      <point x="0.0" y="116.0" />
+      <point x="0.0" y="-44.5" />
+      <point x="0.0" y="128.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.6463414634146342" showDependencies="true" x="524.5" y="673.0" />
+  <settings layout="Hierarchic" zoom="0.4320160750167448" showDependencies="true" x="403.5" y="732.5" />
   <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
     <Category>Fields</Category>
+    <Category>Inner Classes</Category>
     <Category>Methods</Category>
     <Category>Properties</Category>
   </Categories>

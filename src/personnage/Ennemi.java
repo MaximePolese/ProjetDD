@@ -1,7 +1,6 @@
 package personnage;
 
-import main.Case;
-import main.GameState;
+import main.*;
 
 import java.sql.SQLException;
 
