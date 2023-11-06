@@ -55,6 +55,15 @@ public class BDD_CRUD {
         }
     }
 
+    public void updatePlayer(Personnage hero) throws SQLException {
+        PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET life = ?, offensiveItem = ?, playerPos = ? WHERE id = ?");
+        pstmt.setInt(1, hero.getLife());
+        pstmt.setString(2, hero.getOffensiveItem().getWeaponName());
+        pstmt.setInt(3, hero.getPlayerPos());
+        pstmt.setInt(4, hero.getId());
+        pstmt.executeUpdate();
+    }
+
 //    public void editHero(Personnage hero) throws SQLException {
 //        stmt = mydb.createStatement();
 //        stmt.executeUpdate("UPDATE hero SET type = " + hero.getType() + " WHERE id = " + rs.getInt(1) + " ");
@@ -71,18 +80,4 @@ public class BDD_CRUD {
 //        }
 //    }
 
-//        public void changeLifePoints(Personnage hero) throws SQLException {
-//        stmt = mydb.createStatement();
-//        stmt.executeUpdate("UPDATE hero SET life = " + hero.getLife() + " WHERE id = " + hero.getId() + " ");
-//        rs = stmt.executeQuery("SELECT life FROM hero WHERE id = " + hero.getId() + " ");
-//        while (rs.next()) {
-//            System.out.println("life: " + rs.getInt(4));
-//        }
-//    }
-//    public void changeLifePoints(Personnage hero) throws SQLException {
-//        PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET life");
-//        pstmt.setInt(1, hero.getLife());
-//        pstmt.executeUpdate();
-//
-//    }
 }

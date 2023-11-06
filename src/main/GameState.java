@@ -4,5 +4,6 @@ public enum GameState {
     gameover,
     enemyDies,
     continu,
-    exit
+    exit,
+    win
 }

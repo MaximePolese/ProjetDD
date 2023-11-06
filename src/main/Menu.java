@@ -12,7 +12,6 @@ public class Menu {
     private String startGame;
     private String exitGame;
     private Personnage p1;
-    private Personnage savePlayer;
     private Game newGame;
 
     public Menu() {
@@ -102,13 +101,16 @@ public class Menu {
         menuChoice = 0;
     }
 
-    public void resetPlayer(Personnage player) throws SQLException {
+    public Personnage resetPlayer(Personnage player) throws SQLException {
+        Personnage savePlayer;
         if (player instanceof Warrior guerrier) {
             savePlayer = new Warrior(guerrier.getType(), guerrier.getName());
-        } else if (player instanceof Wizard magicien) {
-            savePlayer = new Wizard(magicien.getType(), magicien.getName());
+        } else {
+            savePlayer = new Wizard(player.getType(), player.getName());
         }
-        mydb.createHero(savePlayer);
+        savePlayer.setId(player.getId());
+        mydb.updatePlayer(savePlayer);
+        return savePlayer;
     }
 
     public void startNewGame() throws SQLException {
@@ -118,14 +120,19 @@ public class Menu {
             if (this.p1 == null) {
                 p1 = new Warrior("guerrier", "player 1");
             }
-            resetPlayer(p1);
-            System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
-            newGame = new Game(mydb, savePlayer);
+            if (p1.getId() == 0) {
+                mydb.createHero(p1);
+            }
+            System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
+            newGame = new Game(mydb, p1);
             while (newGame.getResult() == GameState.continu) {
                 try {
-                    newGame.setResult(newGame.playGame(savePlayer));
+                    newGame.setResult(newGame.playGame(p1));
+                    mydb.updatePlayer(p1);
                 } catch (PersonnageHorsPlateauException | SQLException e1) {
                     System.out.println(e1.getMessage());
+                    p1 = resetPlayer(p1);
+                    newGame.setResult(GameState.win);
                 }
             }
             if (newGame.getResult() == GameState.exit) {

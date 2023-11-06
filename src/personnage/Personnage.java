@@ -45,7 +45,6 @@ public abstract class Personnage {
         if (this.life > this.maxLife) {
             this.life = this.maxLife;
         }
-//        mydb.changeLifePoints(this);
         System.out.println("new player's life : " + this.life);
     }
 
@@ -119,7 +118,6 @@ public abstract class Personnage {
         System.out.println("Enemy attacks !");
         this.life = this.life - mechant.getStrength();
         System.out.println("new player's life : " + this.life);
-//                    mydb.changeLifePoints(this);
     }
 
     /**
