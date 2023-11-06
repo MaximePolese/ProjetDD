@@ -56,7 +56,9 @@ public class BDD_CRUD {
     }
 
     public void updatePlayer(Personnage hero) throws SQLException {
-        PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET life = ?, strength = ?, offensiveItem = ?, defensiveItem = ?, playerPos = ? WHERE id = ?");
+        PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET name = ?, type = ?, life = ?, strength = ?, offensiveItem = ?, defensiveItem = ?, playerPos = ? WHERE id = ?");
+        pstmt.setString(1, hero.getName());
+        pstmt.setString(2, hero.getType());
         pstmt.setInt(1, hero.getLife());
         pstmt.setInt(2, hero.getStrength());
         pstmt.setString(3, hero.getOffensiveItem().getWeaponName());

@@ -12,6 +12,7 @@ public class Menu {
     private String startGame;
     private String exitGame;
     private Personnage p1;
+    private Personnage tempPlayer;
     private Game newGame;
 
     public Menu() {
@@ -31,7 +32,7 @@ public class Menu {
                     System.out.println("First, you have to create new player ! back to menu ......");
                     menuChoice = 0;
                 } else {
-                    this.modifyPlayer();
+                    this.modifyPlayer(p1);
                 }
             } else if (this.menuChoice == 3) {
                 this.startNewGame();
@@ -91,28 +92,33 @@ public class Menu {
         }
     }
 
-    public void modifyPlayer() throws SQLException {
+    public void modifyPlayer(Personnage player) throws SQLException {
         System.out.print("Modify type (guerrier/magicien) : ");
         String type = clavier.nextLine();
         System.out.print("Modify name : ");
         String name = clavier.nextLine();
-        newPlayer(type, name);
-        mydb.updatePlayer(p1);
+        if (type.equals("guerrier")) {
+            tempPlayer = new Warrior(type, name);
+        } else if (type.equals("magicien")) {
+            tempPlayer = new Wizard(type, name);
+        }
+        tempPlayer.setId(player.getId());
+        mydb.updatePlayer(tempPlayer);
+        p1 = tempPlayer;
         System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
         System.out.println("Your player is modified! back to menu ......");
         menuChoice = 0;
     }
 
     public Personnage resetPlayer(Personnage player) throws SQLException {
-        Personnage savePlayer;
         if (player instanceof Warrior guerrier) {
-            savePlayer = new Warrior(guerrier.getType(), guerrier.getName());
+            tempPlayer = new Warrior(guerrier.getType(), guerrier.getName());
         } else {
-            savePlayer = new Wizard(player.getType(), player.getName());
+            tempPlayer = new Wizard(player.getType(), player.getName());
         }
-        savePlayer.setId(player.getId());
-        mydb.updatePlayer(savePlayer);
-        return savePlayer;
+        tempPlayer.setId(player.getId());
+        mydb.updatePlayer(tempPlayer);
+        return tempPlayer;
     }
 
     public void startNewGame() throws SQLException {
