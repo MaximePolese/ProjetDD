@@ -12,27 +12,27 @@ public class Game {
     private PauseMenu pauseMenu;
     private GameState result;
 
-    public Game(BDD_CRUD db) {
+    public Game(BDD_CRUD db, Personnage player) {
         keyboard = new Scanner(System.in);
         board = new Plateau();
         dice = new De();
         pauseMenu = new PauseMenu(db);
         result = GameState.continu;
         System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
-        System.out.println("Player en position : " + (board.getPlayerPos() + 1));
+        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
     }
 
     public GameState playGame(Personnage player) throws PersonnageHorsPlateauException, SQLException {
 
-        while (board.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
+        while (player.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {
                 return pauseMenu.launchPauseMenu(player);
             } else {
                 this.movePlayer(player);
-                result = board.getInitBoard().get(board.getPlayerPos()).interaction(player);
+                result = board.getInitBoard().get(player.getPlayerPos()).interaction(player);
                 if (result == GameState.enemyDies) {
-                    board.deleteEnemy();
+                    board.deleteEnemy(player);
                 }
             }
         }
@@ -41,20 +41,11 @@ public class Game {
 
     public void movePlayer(Personnage player) throws PersonnageHorsPlateauException {
         dice.lancerDe();
-        board.setPlayerPos(board.getPlayerPos() + dice.getDiceResult());
-        if (board.getPlayerPos() >= 63) {
+        player.setPlayerPos(player.getPlayerPos() + dice.getDiceResult());
+        if (player.getPlayerPos() >= 63) {
             throw new PersonnageHorsPlateauException(player);
         }
-        System.out.println("Player en position : " + (board.getPlayerPos() + 1));
-    }
-
-    public void fuite() {
-        dice.lancerDe();
-        board.setPlayerPos(board.getPlayerPos() - dice.getDiceResult());
-        if (board.getPlayerPos() < 0) {
-            board.setPlayerPos(0);
-        }
-        System.out.println("Player en position : " + (board.getPlayerPos() + 1));
+        System.out.println("Player en position : " + (player.getPlayerPos() + 1));
     }
 
     public GameState getResult() {
@@ -63,6 +54,14 @@ public class Game {
 
     public void setResult(GameState result) {
         this.result = result;
+    }
+
+    public De getDice() {
+        return dice;
+    }
+
+    public void setDice(De dice) {
+        this.dice = dice;
     }
 
     public static final String ANSI_RESET = "\u001B[0m";

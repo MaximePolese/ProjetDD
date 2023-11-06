@@ -20,6 +20,7 @@ public abstract class Personnage {
     private EquipementOffensif offensiveItem;
     private EquipementDefensif defensiveItem;
     private int maxLife;
+    private int playerPos;
 
     /**
      * Constructeur de personnage
@@ -30,6 +31,7 @@ public abstract class Personnage {
     protected Personnage(String type, String name) {
         this.name = name;
         this.type = type;
+        this.playerPos = 0;
     }
 
     /**
@@ -90,7 +92,7 @@ public abstract class Personnage {
                 fuite = "";
             } else if (fuite.equals("y")) {
                 System.out.println("fuite");
-//                Game.fuite();
+                this.fuite();
             }
         }
         return GameState.continu;
@@ -119,20 +121,19 @@ public abstract class Personnage {
         System.out.println("new player's life : " + this.life);
 //                    mydb.changeLifePoints(this);
     }
-//
-//    /**
-//     * Le personnage s'enfuit d'un combat,
-//     * il recule du résultat du dé
-//     */
-//    public void fuite() {
-//        Game.getDice().lancerDe();
-//
-//        this.playerPos = this.playerPos - dice;
-//        if (this.playerPos < 0) {
-//            this.playerPos = 0;
-//        }
-//        System.out.println("Player en position : " + (this.playerPos + 1));
-//    }
+
+    /**
+     * Le personnage s'enfuit d'un combat,
+     * il recule du résultat du dé
+     */
+    public void fuite() {
+        int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
+        System.out.println("Dice result : " + dice);
+        if (this.playerPos < 0) {
+            this.playerPos = 0;
+        }
+        System.out.println("Player en position : " + (this.playerPos + 1));
+    }
 
     /**
      * Pour afficher les caractéristiques du personnage
@@ -210,5 +211,13 @@ public abstract class Personnage {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPlayerPos() {
+        return playerPos;
+    }
+
+    public void setPlayerPos(int playerPos) {
+        this.playerPos = playerPos;
     }
 }

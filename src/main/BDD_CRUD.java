@@ -34,18 +34,20 @@ public class BDD_CRUD {
             System.out.print(", strength: " + rs.getInt(5));
             System.out.print(", offensiveItem : " + rs.getString(6));
             System.out.print(", defensiveItem : " + rs.getString(7));
+            System.out.print(", playerPos : " + rs.getInt(8));
             System.out.println();
         }
     }
 
     public void createHero(Personnage hero) throws SQLException {
-        PreparedStatement pstmt = mydb.prepareStatement("INSERT INTO hero (name, type, life, strength, offensiveItem, defensiveItem) VALUES(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pstmt = mydb.prepareStatement("INSERT INTO hero (name, type, life, strength, offensiveItem, defensiveItem, playerPos) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         pstmt.setString(1, hero.getName());
         pstmt.setString(2, hero.getType());
         pstmt.setInt(3, hero.getLife());
         pstmt.setInt(4, hero.getStrength());
         pstmt.setString(5, hero.getOffensiveItem().getWeaponName());
         pstmt.setString(6, hero.getDefensiveItem().getShieldName());
+        pstmt.setInt(7, hero.getPlayerPos());
         pstmt.executeUpdate();
         rs = pstmt.getGeneratedKeys();
         while (rs.next()) { // .next() pour les ResultSet permet de passer à la ligne suivante et donc d'itérer la table récupérée.

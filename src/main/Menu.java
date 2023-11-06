@@ -120,7 +120,7 @@ public class Menu {
             }
             resetPlayer(p1);
             System.out.println(Game.ANSI_GREEN + savePlayer + Game.ANSI_RESET);
-            newGame = new Game(mydb);
+            newGame = new Game(mydb, savePlayer);
             while (newGame.getResult() == GameState.continu) {
                 try {
                     newGame.setResult(newGame.playGame(savePlayer));

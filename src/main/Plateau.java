@@ -19,7 +19,6 @@ public class Plateau {
     int caseVide;
     int random;
     boolean caseRemplie;
-    private int playerPos;
 
     public Plateau() {
         initBoard = new ArrayList<Case>();
@@ -34,7 +33,6 @@ public class Plateau {
         bigPotion = 0;
         caseVide = 0;
         this.randomInitBoard();
-        playerPos = 0;
     }
 
     public void randomInitBoard() {
@@ -90,16 +88,8 @@ public class Plateau {
         }
     }
 
-    public void deleteEnemy() {
-        initBoard.set(playerPos, new CaseVide());
-    }
-
-    public int getPlayerPos() {
-        return playerPos;
-    }
-
-    public void setPlayerPos(int playerPos) {
-        this.playerPos = playerPos;
+    public void deleteEnemy(Personnage player) {
+        initBoard.set(player.getPlayerPos(), new CaseVide());
     }
 
     public ArrayList<Case> getInitBoard() {
