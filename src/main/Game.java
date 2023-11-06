@@ -18,11 +18,12 @@ public class Game {
         dice = new De();
         pauseMenu = new PauseMenu(db);
         result = GameState.continu;
+        System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
+        System.out.println("Player en position : " + (board.getPlayerPos() + 1));
     }
 
     public GameState playGame(Personnage player) throws PersonnageHorsPlateauException, SQLException {
-        System.out.println(ANSI_RED + "Write pause anytime to access pause menu" + ANSI_RESET);
-        System.out.println("Player en position : " + (board.getPlayerPos() + 1));
+
         while (board.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {
