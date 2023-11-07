@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
-    private Scanner clavier;
+    private Scanner keyboard;
     private BDD_CRUD mydb;
     private int menuChoice;
     private String startGame;
@@ -16,7 +16,7 @@ public class Menu {
     private Game newGame;
 
     public Menu() {
-        clavier = new Scanner(System.in);
+        keyboard = new Scanner(System.in);
         mydb = new BDD_CRUD();
         menuChoice = 0;
         exitGame = "n";
@@ -64,8 +64,8 @@ public class Menu {
             System.out.println("3 - Start new game");
             System.out.println("4 - Exit game");
             System.out.print("Enter your choice : ");
-            menuChoice = clavier.nextInt();
-            clavier.nextLine();
+            menuChoice = keyboard.nextInt();
+            keyboard.nextLine();
             if (menuChoice < 1 || menuChoice > 4) {
                 System.out.println("Select a right number ...");
             }
@@ -74,29 +74,25 @@ public class Menu {
 
     public void createNewPlayer() throws SQLException {
         System.out.print("Enter type (guerrier/magicien) : ");
-        String type = clavier.nextLine();
+        String type = keyboard.nextLine();
         System.out.print("Enter name : ");
-        String name = clavier.nextLine();
-        newPlayer(type, name);
+        String name = keyboard.nextLine();
+        if (type.equals("guerrier")) {
+            p1 = new Warrior(type, name);
+        } else if (type.equals("magicien")) {
+            p1 = new Wizard(type, name);
+        }
         mydb.createHero(p1);
         System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
         System.out.println("Your player is created ! back to menu ......");
         menuChoice = 0;
     }
 
-    public void newPlayer(String type, String name) throws SQLException {
-        if (type.equals("guerrier")) {
-            p1 = new Warrior(type, name);
-        } else if (type.equals("magicien")) {
-            p1 = new Wizard(type, name);
-        }
-    }
-
     public void modifyPlayer(Personnage player) throws SQLException {
         System.out.print("Modify type (guerrier/magicien) : ");
-        String type = clavier.nextLine();
+        String type = keyboard.nextLine();
         System.out.print("Modify name : ");
-        String name = clavier.nextLine();
+        String name = keyboard.nextLine();
         if (type.equals("guerrier")) {
             tempPlayer = new Warrior(type, name);
         } else if (type.equals("magicien")) {
@@ -110,7 +106,7 @@ public class Menu {
         menuChoice = 0;
     }
 
-    public Personnage resetPlayer(Personnage player) throws SQLException {
+    public void resetPlayer(Personnage player) throws SQLException {
         if (player instanceof Warrior guerrier) {
             tempPlayer = new Warrior(guerrier.getType(), guerrier.getName());
         } else {
@@ -118,12 +114,12 @@ public class Menu {
         }
         tempPlayer.setId(player.getId());
         mydb.updatePlayer(tempPlayer);
-        return tempPlayer;
+        p1 = tempPlayer;
     }
 
     public void startNewGame() throws SQLException {
         System.out.print("Start new game ? y/n ");
-        startGame = clavier.nextLine();
+        startGame = keyboard.nextLine();
         if (this.startGame.equals("y")) {
             if (this.p1 == null) {
                 p1 = new Warrior("guerrier", "player 1");
@@ -137,7 +133,7 @@ public class Menu {
                     mydb.updatePlayer(p1);
                 } catch (PersonnageHorsPlateauException | SQLException e1) {
                     System.out.println(e1.getMessage());
-                    p1 = resetPlayer(p1);
+                    resetPlayer(p1);
                     newGame.setResult(GameState.win);
                 }
             }
@@ -151,7 +147,7 @@ public class Menu {
 
     public void exitGame() {
         System.out.print("Exit game ? y/n ");
-        exitGame = clavier.nextLine();
+        exitGame = keyboard.nextLine();
         if (this.exitGame.equals("n")) {
             menuChoice = 0;
         }
