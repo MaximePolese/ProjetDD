@@ -5,12 +5,12 @@ import personnage.Personnage;
 import java.sql.*;
 
 public class BDD_CRUD {
-    private dbConnection mydb;
+    private DbConnection mydb;
     private ResultSet rs;
     private Statement stmt;
 
     public BDD_CRUD() {
-        mydb = dbConnection.getInstance();
+        mydb = DbConnection.getInstance();
     }
 
     public void getHeroes() throws SQLException {

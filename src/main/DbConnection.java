@@ -2,11 +2,11 @@ package main;
 
 import java.sql.*;
 
-public class dbConnection {
-    private static final dbConnection instance = new dbConnection();
+public class DbConnection {
+    private static final DbConnection instance = new DbConnection();
     private static Connection mydb;
 
-    public static dbConnection getInstance() {
+    public static DbConnection getInstance() {
         return instance;
     }
 
