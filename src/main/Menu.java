@@ -9,8 +9,6 @@ public class Menu {
     private Scanner keyboard;
     private BDD_CRUD mydb;
     private int menuChoice;
-    private String startGame;
-    private String loadGame;
     private String exitGame;
     private Personnage p1;
     private Personnage tempPlayer;
@@ -123,8 +121,8 @@ public class Menu {
 
     public void startNewGame() throws SQLException {
         System.out.print("Start new game ? y/n ");
-        startGame = keyboard.nextLine();
-        if (this.startGame.equals("y")) {
+        String startGame = keyboard.nextLine();
+        if (startGame.equals("y")) {
             if (this.p1 == null) {
                 p1 = new Warrior("guerrier", "player 1");
                 mydb.createHero(p1);
@@ -143,15 +141,15 @@ public class Menu {
             if (newGame.getResult() == GameState.exit) {
                 menuChoice = 0;
             }
-        } else if (this.startGame.equals("n")) {
+        } else if (startGame.equals("n")) {
             menuChoice = 0;
         }
     }
 
     public void continuGame() throws SQLException {
         System.out.print("Load last game ? y/n ");
-        loadGame = keyboard.nextLine();
-        if (this.loadGame.equals("y")) {
+        String loadGame = keyboard.nextLine();
+        if (loadGame.equals("y")) {
             System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
             while (newGame.getResult() == GameState.continu) {
                 try {
@@ -165,7 +163,7 @@ public class Menu {
             if (newGame.getResult() == GameState.exit) {
                 menuChoice = 0;
             }
-        } else if (this.loadGame.equals("n")) {
+        } else if (loadGame.equals("n")) {
             menuChoice = 0;
         }
     }
