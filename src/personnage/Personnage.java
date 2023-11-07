@@ -90,7 +90,6 @@ public abstract class Personnage {
                 }
                 fuite = "";
             } else if (fuite.equals("y")) {
-                System.out.println("fuite");
                 this.fuite();
             }
         }
@@ -127,6 +126,7 @@ public abstract class Personnage {
     public void fuite() {
         int dice = (int) Math.floor(Math.random() * (6 - 1 + 1) + 1);
         System.out.println("Dice result : " + dice);
+        this.playerPos = this.playerPos - dice;
         if (this.playerPos < 0) {
             this.playerPos = 0;
         }
@@ -148,6 +148,7 @@ public abstract class Personnage {
                 ", strength = " + strength +
                 ", " + offensiveItem +
                 ", " + defensiveItem +
+                ", playerPos = " + (playerPos + 1) +
                 '}';
     }
 

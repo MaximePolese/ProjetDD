@@ -4,7 +4,6 @@ import personnage.Personnage;
 
 import java.sql.*;
 
-
 public class BDD_CRUD {
     private Connection mydb;
     private ResultSet rs;
@@ -59,12 +58,12 @@ public class BDD_CRUD {
         PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET name = ?, type = ?, life = ?, strength = ?, offensiveItem = ?, defensiveItem = ?, playerPos = ? WHERE id = ?");
         pstmt.setString(1, hero.getName());
         pstmt.setString(2, hero.getType());
-        pstmt.setInt(1, hero.getLife());
-        pstmt.setInt(2, hero.getStrength());
-        pstmt.setString(3, hero.getOffensiveItem().getWeaponName());
-        pstmt.setString(4, hero.getDefensiveItem().getShieldName());
-        pstmt.setInt(5, hero.getPlayerPos());
-        pstmt.setInt(6, hero.getId());
+        pstmt.setInt(3, hero.getLife());
+        pstmt.setInt(4, hero.getStrength());
+        pstmt.setString(5, hero.getOffensiveItem().getWeaponName());
+        pstmt.setString(6, hero.getDefensiveItem().getShieldName());
+        pstmt.setInt(7, hero.getPlayerPos());
+        pstmt.setInt(8, hero.getId());
         pstmt.executeUpdate();
     }
 }

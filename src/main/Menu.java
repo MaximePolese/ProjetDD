@@ -129,9 +129,6 @@ public class Menu {
                 p1 = new Warrior("guerrier", "player 1");
                 mydb.createHero(p1);
             }
-//            if (p1.getId() == 0) {
-//                mydb.createHero(p1);
-//            }
             System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
             newGame = new Game(mydb, p1);
             while (newGame.getResult() == GameState.continu) {
