@@ -7,18 +7,18 @@ import java.util.ArrayList;
 
 public class Plateau {
     private ArrayList<Case> initBoard;
-    int dragon;
-    int sorcier;
-    int gobelin;
-    int massue;
-    int epee;
-    int eclair;
-    int bouleDeFeu;
-    int smallPotion;
-    int bigPotion;
-    int caseVide;
-    int random;
-    boolean caseRemplie;
+    private int dragon;
+    private int sorcier;
+    private int gobelin;
+    private int massue;
+    private int epee;
+    private int eclair;
+    private int bouleDeFeu;
+    private int smallPotion;
+    private int bigPotion;
+    private int caseVide;
+    private int random;
+    private boolean caseRemplie;
 
     public Plateau() {
         initBoard = new ArrayList<Case>();
