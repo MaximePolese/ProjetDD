@@ -148,7 +148,7 @@ public class Menu {
         }
     }
 
-    public void continuGame() {
+    public void continuGame() throws SQLException {
         System.out.print("Load last game ? y/n ");
         loadGame = keyboard.nextLine();
         if (this.loadGame.equals("y")) {
