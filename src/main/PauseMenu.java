@@ -24,6 +24,8 @@ public class PauseMenu {
             } else if (pauseChoice == 2) {
                 this.resumeGame();
             } else if (pauseChoice == 3) {
+                this.saveGame(player);
+            } else if (pauseChoice == 4) {
                 return GameState.exit;
             }
         }
@@ -32,15 +34,16 @@ public class PauseMenu {
     }
 
     public void pauseMenu() {
-        while (pauseChoice < 1 || pauseChoice > 3) {
+        while (pauseChoice < 1 || pauseChoice > 4) {
             System.out.println("________ PAUSE ________");
             System.out.println("1 - Player's status");
             System.out.println("2 - Resume game");
-            System.out.println("3 - Exit to main menu");
+            System.out.println("3 - Save game");
+            System.out.println("4 - Exit to main menu");
             System.out.print("Enter your choice : ");
             pauseChoice = keyboard.nextInt();
             keyboard.nextLine();
-            if (pauseChoice < 1 || pauseChoice > 3) {
+            if (pauseChoice < 1 || pauseChoice > 4) {
                 System.out.println("Select a right number ...");
             }
         }
@@ -49,6 +52,12 @@ public class PauseMenu {
     public void playerStatus(Personnage player) throws SQLException {
         mydb.getHeroes();
         System.out.println(Game.ANSI_GREEN + player + Game.ANSI_RESET);
+        pauseChoice = 0;
+    }
+
+    public void saveGame(Personnage player) throws SQLException {
+        mydb.updatePlayer(player);
+        System.out.println("game saved");
         pauseChoice = 0;
     }
 

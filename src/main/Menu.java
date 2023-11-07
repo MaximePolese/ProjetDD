@@ -130,7 +130,6 @@ public class Menu {
             while (newGame.getResult() == GameState.continu) {
                 try {
                     newGame.setResult(newGame.playGame(p1));
-                    mydb.updatePlayer(p1);
                 } catch (PersonnageHorsPlateauException | SQLException e1) {
                     System.out.println(e1.getMessage());
                     resetPlayer(p1);

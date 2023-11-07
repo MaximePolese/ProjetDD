@@ -5,25 +5,16 @@ import personnage.Personnage;
 import java.sql.*;
 
 public class BDD_CRUD {
-    private Connection mydb;
+    private dbConnection mydb;
     private ResultSet rs;
     private Statement stmt;
 
     public BDD_CRUD() {
-        try {
-            Driver myDriver = new com.mysql.jdbc.Driver();
-            DriverManager.registerDriver(myDriver);
-            String URL = "jdbc:mysql://localhost:3306/mydb_java";
-            this.mydb = DriverManager.getConnection(URL, "root",
-                    "root");
-        } catch (SQLException e) {
-            System.out.println("Error: unable to load driver class!");
-            System.exit(1);
-        }
+        mydb = dbConnection.getInstance();
     }
 
     public void getHeroes() throws SQLException {
-        stmt = mydb.createStatement();
+        stmt = mydb.getConnection().createStatement();
         rs = stmt.executeQuery("SELECT * FROM hero");
         while (rs.next()) {
             System.out.print("id : " + rs.getInt(1));
@@ -39,7 +30,7 @@ public class BDD_CRUD {
     }
 
     public void createHero(Personnage hero) throws SQLException {
-        PreparedStatement pstmt = mydb.prepareStatement("INSERT INTO hero (name, type, life, strength, offensiveItem, defensiveItem, playerPos) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pstmt = mydb.getConnection().prepareStatement("INSERT INTO hero (name, type, life, strength, offensiveItem, defensiveItem, playerPos) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         pstmt.setString(1, hero.getName());
         pstmt.setString(2, hero.getType());
         pstmt.setInt(3, hero.getLife());
@@ -55,7 +46,7 @@ public class BDD_CRUD {
     }
 
     public void updatePlayer(Personnage hero) throws SQLException {
-        PreparedStatement pstmt = mydb.prepareStatement("UPDATE hero SET name = ?, type = ?, life = ?, strength = ?, offensiveItem = ?, defensiveItem = ?, playerPos = ? WHERE id = ?");
+        PreparedStatement pstmt = mydb.getConnection().prepareStatement("UPDATE hero SET name = ?, type = ?, life = ?, strength = ?, offensiveItem = ?, defensiveItem = ?, playerPos = ? WHERE id = ?");
         pstmt.setString(1, hero.getName());
         pstmt.setString(2, hero.getType());
         pstmt.setInt(3, hero.getLife());
