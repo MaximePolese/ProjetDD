@@ -10,6 +10,7 @@ public class Menu {
     private BDD_CRUD mydb;
     private int menuChoice;
     private String startGame;
+    private String loadGame;
     private String exitGame;
     private Personnage p1;
     private Personnage tempPlayer;
@@ -37,13 +38,15 @@ public class Menu {
             } else if (this.menuChoice == 3) {
                 this.startNewGame();
             } else if (this.menuChoice == 4) {
+                this.continuGame();
+            } else if (this.menuChoice == 5) {
                 this.exitGame();
             }
         }
     }
 
     public void mainMenu() {
-        while (menuChoice < 1 || menuChoice > 4) {
+        while (menuChoice < 1 || menuChoice > 5) {
             System.out.println(Game.ANSI_RED +
                     "    ,---,                                                                                      ,---,                                                                    \n" +
                     "  .'  .' `\\                                                                                  .'  .' `\\                                                                  \n" +
@@ -62,11 +65,12 @@ public class Menu {
             System.out.println("1 - New player");
             System.out.println("2 - Modify player");
             System.out.println("3 - Start new game");
-            System.out.println("4 - Exit game");
+            System.out.println("4 - Load last game");
+            System.out.println("5 - Exit game");
             System.out.print("Enter your choice : ");
             menuChoice = keyboard.nextInt();
             keyboard.nextLine();
-            if (menuChoice < 1 || menuChoice > 4) {
+            if (menuChoice < 1 || menuChoice > 5) {
                 System.out.println("Select a right number ...");
             }
         }
@@ -140,6 +144,28 @@ public class Menu {
                 menuChoice = 0;
             }
         } else if (this.startGame.equals("n")) {
+            menuChoice = 0;
+        }
+    }
+
+    public void continuGame() {
+        System.out.print("Load last game ? y/n ");
+        loadGame = keyboard.nextLine();
+        if (this.loadGame.equals("y")) {
+            System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
+            while (newGame.getResult() == GameState.continu) {
+                try {
+                    newGame.setResult(newGame.playGame(p1));
+                } catch (PersonnageHorsPlateauException | SQLException e1) {
+                    System.out.println(e1.getMessage());
+                    resetPlayer(p1);
+                    newGame.setResult(GameState.win);
+                }
+            }
+            if (newGame.getResult() == GameState.exit) {
+                menuChoice = 0;
+            }
+        } else if (this.loadGame.equals("n")) {
             menuChoice = 0;
         }
     }

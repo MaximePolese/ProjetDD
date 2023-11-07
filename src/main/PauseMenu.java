@@ -57,7 +57,7 @@ public class PauseMenu {
 
     public void saveGame(Personnage player) throws SQLException {
         mydb.updatePlayer(player);
-        System.out.println("game saved");
+        System.out.println("Game saved");
         pauseChoice = 0;
     }
 
