@@ -115,7 +115,6 @@ public class Menu {
             tempPlayer = new Wizard(player.getType(), player.getName());
         }
         tempPlayer.setId(player.getId());
-        mydb.updatePlayer(tempPlayer);
         p1 = tempPlayer;
     }
 
