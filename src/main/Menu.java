@@ -155,7 +155,6 @@ public class Menu {
         System.out.print("Load last game ? y/n ");
         String loadGame = keyboard.nextLine();
         if (loadGame.equals("y")) {
-            System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
             System.out.println("en cours de conception");
         } else if (loadGame.equals("n")) {
             menuChoice = 0;
