@@ -119,13 +119,17 @@ public class Menu {
         p1 = tempPlayer;
     }
 
-    public void startNewGame() throws SQLException {
+    public void startNewGame() {
         System.out.print("Start new game ? y/n ");
         String startGame = keyboard.nextLine();
         if (startGame.equals("y")) {
             if (this.p1 == null) {
                 p1 = new Warrior("guerrier", "player 1");
-                mydb.createHero(p1);
+                try {
+                    mydb.createHero(p1);
+                } catch (SQLException e) {
+                    System.out.println("impossible to save hero");
+                }
             }
             System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
             newGame = new Game(mydb, p1);
@@ -134,7 +138,11 @@ public class Menu {
                     newGame.setResult(newGame.playGame(p1));
                 } catch (PersonnageHorsPlateauException | SQLException e1) {
                     System.out.println(e1.getMessage());
-                    resetPlayer(p1);
+                    try {
+                        resetPlayer(p1);
+                    } catch (SQLException e) {
+                        System.out.println("impossible to reset hero");
+                    }
                     newGame.setResult(GameState.win);
                 }
             }

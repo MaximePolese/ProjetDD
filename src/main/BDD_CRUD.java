@@ -4,13 +4,15 @@ import personnage.Personnage;
 
 import java.sql.*;
 
+import static main.DbConnection.getInstance;
+
 public class BDD_CRUD {
     private DbConnection mydb;
     private ResultSet rs;
     private Statement stmt;
 
     public BDD_CRUD() {
-        mydb = DbConnection.getInstance();
+        mydb = getInstance();
     }
 
     public void getHeroes() throws SQLException {
