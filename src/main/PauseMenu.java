@@ -16,7 +16,7 @@ public class PauseMenu {
         pauseChoice = 0;
     }
 
-    public GameState launchPauseMenu(Personnage player) throws SQLException {
+    public GameState launchPauseMenu(Personnage player, Game game) throws SQLException {
         while (pauseChoice == 0) {
             this.pauseMenu();
             if (pauseChoice == 1) {
@@ -26,7 +26,7 @@ public class PauseMenu {
             } else if (pauseChoice == 3) {
                 this.saveGame(player);
             } else if (pauseChoice == 4) {
-                return GameState.exit;
+               return GameState.exit;
             }
         }
         pauseChoice = 0;

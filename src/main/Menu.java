@@ -134,7 +134,7 @@ public class Menu {
             System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
             newGame = new Game(mydb, p1);
             try {
-                newGame.setResult(newGame.playGame(p1));
+                newGame.setResult(newGame.playGame(p1, newGame));
             } catch (PersonnageHorsPlateauException | SQLException e1) {
                 System.out.println(e1.getMessage());
                 newGame.setResult(GameState.win);
