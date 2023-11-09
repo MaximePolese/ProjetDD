@@ -3,8 +3,12 @@ package main;
 import java.sql.*;
 
 public class DbConnection {
-    private static final DbConnection instance = new DbConnection();
+    private static DbConnection instance;
     private static Connection mydb;
+
+    private DbConnection() {
+        instance = new DbConnection();
+    }
 
     public static DbConnection getInstance() {
         return instance;
