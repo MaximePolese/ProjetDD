@@ -26,7 +26,7 @@ public class Game {
         while (player.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {
-                return pauseMenu.launchPauseMenu(player);
+                pauseMenu.launchPauseMenu(player);
             } else {
                 this.movePlayer(player);
                 result = board.getInitBoard().get(player.getPlayerPos()).interaction(player);

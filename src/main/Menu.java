@@ -133,18 +133,16 @@ public class Menu {
             }
             System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
             newGame = new Game(mydb, p1);
-            while (newGame.getResult() == GameState.continu) {
-                try {
-                    newGame.setResult(newGame.playGame(p1));
-                } catch (PersonnageHorsPlateauException | SQLException e1) {
-                    System.out.println(e1.getMessage());
-                    try {
-                        resetPlayer(p1);
-                    } catch (SQLException e) {
-                        System.out.println("impossible to reset hero");
-                    }
-                    newGame.setResult(GameState.win);
-                }
+            try {
+                newGame.setResult(newGame.playGame(p1));
+            } catch (PersonnageHorsPlateauException | SQLException e1) {
+                System.out.println(e1.getMessage());
+                newGame.setResult(GameState.win);
+            }
+            try {
+                resetPlayer(p1);
+            } catch (SQLException e) {
+                System.out.println("impossible to reset hero");
             }
             if (newGame.getResult() == GameState.exit) {
                 menuChoice = 0;
@@ -154,23 +152,12 @@ public class Menu {
         }
     }
 
-    public void continuGame() throws SQLException {
+    public void continuGame() {
         System.out.print("Load last game ? y/n ");
         String loadGame = keyboard.nextLine();
         if (loadGame.equals("y")) {
             System.out.println(Game.ANSI_GREEN + p1 + Game.ANSI_RESET);
-            while (newGame.getResult() == GameState.continu) {
-                try {
-                    newGame.setResult(newGame.playGame(p1));
-                } catch (PersonnageHorsPlateauException | SQLException e1) {
-                    System.out.println(e1.getMessage());
-                    resetPlayer(p1);
-                    newGame.setResult(GameState.win);
-                }
-            }
-            if (newGame.getResult() == GameState.exit) {
-                menuChoice = 0;
-            }
+            System.out.println("en cours de conception");
         } else if (loadGame.equals("n")) {
             menuChoice = 0;
         }
