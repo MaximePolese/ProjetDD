@@ -22,11 +22,11 @@ public class Game {
         System.out.println("Player en position : " + (player.getPlayerPos() + 1));
     }
 
-    public GameState playGame(Personnage player, Game game) throws PersonnageHorsPlateauException, SQLException {
+    public GameState playGame(Personnage player) throws PersonnageHorsPlateauException, SQLException {
         while (player.getPlayerPos() < 63 && result != GameState.gameover && result != GameState.exit) {
             System.out.print("Press enter to play (or write pause): ");
             if (keyboard.nextLine().equals("pause")) {
-                result = pauseMenu.launchPauseMenu(player, game);
+                result = pauseMenu.launchPauseMenu(player);
             } else {
                 this.movePlayer(player);
                 result = board.getInitBoard().get(player.getPlayerPos()).interaction(player);
